@@ -1,0 +1,20 @@
+-- User
+npx sequelize model:generate --name User --attributes username:string,email:string,password:string,quota:integer
+
+-- Room
+npx sequelize model:generate --name Room --attributes roomName:string,description:text
+
+-- Artist
+npx sequelize model:generate --name Artist --attributes name:string,website:string,bio:text
+
+-- NFT
+npx sequelize model:generate --name NFT --attributes token:string,title:string,description:text,imageUrl:string,ArtistId:integer
+
+-- Rating
+npx sequelize model:generate --name Rating --attributes UserId:integer,NFTId:integer,value:integer
+
+-- UserFavorite
+npx sequelize model:generate --name UserFavorite --attributes UserId:integer,NFTId:integer
+
+-- Room NFTs
+npx sequelize model:generate --name RoomNFT --attributes posX:integer,posY:integer,posZ:integer,RoomId:integer,NFTId:integer
