@@ -22,7 +22,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       ArtistId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Artists',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

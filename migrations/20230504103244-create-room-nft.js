@@ -19,10 +19,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       RoomId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Rooms',
+          key: 'id'
+        }
       },
       NFTId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'NFTs',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

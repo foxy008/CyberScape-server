@@ -14,8 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Rating.init({
-    UserId: DataTypes.INTEGER,
-    NFTId: DataTypes.INTEGER,
+    UserId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
+    },
+    NFTId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'NFTs',
+        key: 'id'
+      }
+    },
     value: DataTypes.INTEGER
   }, {
     sequelize,
