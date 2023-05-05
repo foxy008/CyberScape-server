@@ -4,7 +4,11 @@
   "description": "CyberScape Server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest --runInBand",
+    "start": "node server.js",
+    "reset": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate &&  npx sequelize db:seed:all",
+    "resetenv": "npx sequelize db:migrate:undo --env test && npx sequelize db:migrate --env test",
+    "migenv": "npx sequelize db:migrate --env test"
   },
   "repository": {
     "type": "git",

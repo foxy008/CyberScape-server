@@ -21,13 +21,6 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING
       },
-      ArtistId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Artists',
-          key: 'id'
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      NFT.belongsTo(models.Artist);
       NFT.hasMany(models.RoomNFT);
       NFT.hasMany(models.Rating);
     }
