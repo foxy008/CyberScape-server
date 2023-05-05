@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     quota: DataTypes.INTEGER
   }, {
+    hooks:{
+
+    },
     sequelize,
     modelName: 'User',
   });
