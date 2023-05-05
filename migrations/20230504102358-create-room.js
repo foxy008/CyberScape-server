@@ -12,7 +12,7 @@ module.exports = {
       roomName: {
         type: Sequelize.STRING
       },
-      description: {
+      address: {
         type: Sequelize.TEXT
       },
       createdAt: {
