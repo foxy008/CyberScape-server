@@ -11,14 +11,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      RoomNFT.belongsTo(models.Room);
+      RoomNFT.belongsTo(models.NFT);
     }
   }
   RoomNFT.init({
     posX: DataTypes.INTEGER,
     posY: DataTypes.INTEGER,
     posZ: DataTypes.INTEGER,
-    RoomId: DataTypes.INTEGER,
-    NFTId: DataTypes.INTEGER
+    RoomId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Rooms',
+        key: 'id'
+      }
+    },
+    NFTId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'NFTs',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'RoomNFT',

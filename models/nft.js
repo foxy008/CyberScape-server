@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      NFT.belongsTo(models.Artist);
+      NFT.hasMany(models.RoomNFT);
+      NFT.hasMany(models.Rating);
     }
   }
   NFT.init({
@@ -18,7 +21,13 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
     imageUrl: DataTypes.STRING,
-    ArtistId: DataTypes.INTEGER
+    ArtistId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Artists',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'NFT',

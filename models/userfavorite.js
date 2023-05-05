@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      UserFavorite.belongsTo(models.User);
+      UserFavorite.belongsTo(models.NFT);
     }
   }
   UserFavorite.init({
