@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    quota: DataTypes.INTEGER
+    quota: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    }
   }, {
     hooks:{
       beforeCreate: user => {

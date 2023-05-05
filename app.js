@@ -12,34 +12,103 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(express.urlencoded({ extended: false }));
   app.use(router);
 
-  app.use((err, req, res, next) => {
-    console.log(err);
-    if (err.name === 'SequelizeValidationError') {
-      const message = err.errors[0].message;
+  app.use((error, req, res, next) => {
+    switch (error.name) {
+        case 'SequelizeValidationError':
+            message = error.errors[0].message;
 
-      res.status(400).json({
-          message
-      });
-    } else if(err.name === 'Forbidden') {
-      res.status(403).json({
-        message: 'Forbidden Access'
-      })
-    }else if(err.name === 'JsonWebTokenError') {
-      res.status(401).json({
-        message: 'Wrong access token'
-      })
-    } else if(err.name === 'LoginFailed') {
-      res.status(401).json({
-        message: 'Wrong email/password'
-      })
-    } else if(err.name === 'NotFound') {
-      res.status(404).json({
-        message: 'Post ID not found'
-      })
-    } else {
-      res.status(500).json({
-        message: 'Internal server error'
-      })
+            res.status(400).json({
+                message
+            });
+            break;
+
+        case 'SequelizeUniqueConstraintError':
+            message = error.errors[0].message;
+
+            switch (message) {
+                case "email must be unique":
+                    message = "Email had been registered before."
+                    break;
+
+                case "title must be unique":
+                    message = "Movie title had existed in database"
+                    break;
+
+                case "name must be unique":
+                    message = "Genre name had existed in database"
+                    break;
+            }
+
+            res.status(400).json({
+                message
+            });
+            break;
+
+        case 'JsonWebTokenError':
+            res.status(403).json({
+                message: 'Wrong access token'
+            });
+            break;
+
+        case 'AuthorFailed':
+            res.status(403).json({
+                message: 'You can only modify/edit your own added movie'
+            });
+            break;
+
+        case 'LoginFailed':
+            res.status(401).json({
+                message: 'Wrong email/password'
+            });
+            break;
+
+        case 'ForbiddenLogin':
+            res.status(403).json({
+                message: 'You must be an admin'
+            });
+            break;
+
+        case 'MovieNotFound':
+            res.status(404).json({
+                message: 'Movie ID not found'
+            });
+            break;
+
+        case 'MovieExisted':
+            res.status(400).json({
+                message: 'Movie had been created before'
+            });
+            break;
+
+        case 'GenreNotFound':
+            res.status(404).json({
+                message: 'Genre ID not found'
+            });
+            break;
+
+        case 'GenreExisted':
+            res.status(400).json({
+                message: 'Genre had been created before'
+            });
+            break;
+
+        case 'NoMovieCasts':
+            res.status(400).json({
+                message: 'There must be at least one cast in the movie'
+            })
+            break;
+
+        case 'SequelizeForeignKeyConstraintError':
+            res.status(400).json({
+                message: 'You must pick a genre for the movie'
+            })
+            break;
+
+        default:
+            res.status(500).json({
+                message: 'Internal server error'
+            });
+            break;
     }
   });
 
