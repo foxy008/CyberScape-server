@@ -1,0 +1,32 @@
+[
+    {
+        "username": "johnsmith",
+        "email": "johnsmith@example.com",
+        "password": "mysecretpassword",
+        "quota": 500
+    },
+    {
+        "username": "jane.doe",
+        "email": "jane.doe@example.com",
+        "password": "s3cur3p@ssw0rd",
+        "quota": 1000
+    },
+    {
+        "username": "jimmychoo",
+        "email": "jimmychoo@example.com",
+        "password": "p@ssw0rd123",
+        "quota": 250
+    },
+    {
+        "username": "jessicajones",
+        "email": "jessicajones@example.com",
+        "password": "myp@ssw0rd",
+        "quota": 750
+    },
+    {
+        "username": "jackblack",
+        "email": "jackblack@example.com",
+        "password": "letmein",
+        "quota": 100
+    }
+]
