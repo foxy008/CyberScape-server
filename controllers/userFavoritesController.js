@@ -6,7 +6,7 @@ class userFavoritesController {
             const { id } = req.loggedInUser;
             const NFTId = req.params.id;
 
-            const [rating, created] = await Rating.findOrCreate({
+            const [rating, created] = await UserFavorite.findOrCreate({
                 where: {
                     UserId: id,
                     NFTId
@@ -34,7 +34,7 @@ class userFavoritesController {
             const { id } = req.loggedInUser;
             const NFTId = req.params.id;
 
-            const deleted = await Rating.destroy({
+            const deleted = await UserFavorite.destroy({
                 where: {
                     UserId: id,
                     NFTId
@@ -46,7 +46,7 @@ class userFavoritesController {
             }
 
             res.status(201).json({
-                message: `User #${id} has favorited NFT #${NFTId}`
+                message: `User #${id} has unfavorited NFT #${NFTId}`
             });
         } catch (error) {
             next(error);

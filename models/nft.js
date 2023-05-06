@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       NFT.hasMany(models.RoomNFT);
       NFT.hasMany(models.Rating);
-      NFT.belongsTo(models.Artist);
     }
   }
   NFT.init({
