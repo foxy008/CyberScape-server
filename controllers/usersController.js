@@ -6,7 +6,8 @@ class usersController {
     static async register(req, res, next) {
         try {
             const {
-                username,
+                firstName,
+                lastName,
                 email,
                 password,
             } = req.body;

@@ -18,7 +18,7 @@ class NFTsController {
 
             const chain = EvmChain.ETHEREUM;
 
-            const [artist, created] = Artist.findOrCreate({
+            const [artist, created] = await Artist.findOrCreate({
                 where: {
                     name
                 },
