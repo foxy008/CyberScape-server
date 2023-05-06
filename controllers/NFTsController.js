@@ -1,6 +1,6 @@
 const Moralis = require("moralis").default;
 const { EvmChain } = require("@moralisweb3/common-evm-utils");
-const { Room, RoomNFT, NFT } = require('../models');
+const { Room, RoomNFT, NFT, Artist } = require('../models');
 
 class NFTsController {
     static async postNewNFTs(req, res, next) {
