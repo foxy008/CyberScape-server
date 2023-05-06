@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Artist.hasMany(models.NFT);
+      Artist.hasMany(models.Room);
     }
   }
   Artist.init({
