@@ -1,10 +1,10 @@
 [
     {
-        "roomName": "Top Collection",
+        "name": "Top Collection",
         "address": "-"
     },
     {
-        "roomName": "All Collection",
+        "name": "All Collection",
         "address": "-"
-    }   
+    }
 ]

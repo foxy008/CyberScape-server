@@ -1,8 +1,10 @@
 const express = require('express');
-const ratingsController = require('../controllers/ratingsControllers');
+const auth = require('../middlewares/auth');
+const userFavoritesController = require('../controllers/userFavoritesController');
 const router = express.Router();
 
-router.post(ratingsController.postNewFavorite);
-router.delete(ratingsController.deleteExistingFavorite);
+router.use(auth);
+router.post('/:id', userFavoritesController.postNewFavorite);
+router.delete('/:id', userFavoritesController.deleteExistingFavorite);
 
 module.exports = router;

@@ -2,7 +2,7 @@
 npx sequelize model:generate --name User --attributes username:string,email:string,password:string,quota:integer
 
 -- Room
-npx sequelize model:generate --name Room --attributes roomName:string,description:text
+npx sequelize model:generate --name Room --attributes name:string,description:text
 
 -- Artist
 npx sequelize model:generate --name Artist --attributes name:string,website:string,bio:text

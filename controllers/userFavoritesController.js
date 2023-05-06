@@ -7,8 +7,14 @@ class userFavoritesController {
             const NFTId = req.params.id;
 
             const [rating, created] = await Rating.findOrCreate({
-                UserId: id,
-                NFTId
+                where: {
+                    UserId: id,
+                    NFTId
+                },
+                defaults: {
+                    UserId: id,
+                    NFTId
+                }
             })
 
             if (!created) {
@@ -28,9 +34,11 @@ class userFavoritesController {
             const { id } = req.loggedInUser;
             const NFTId = req.params.id;
 
-            const deleted = await Rating.findOrCreate({
-                UserId: id,
-                NFTId
+            const deleted = await Rating.destroy({
+                where: {
+                    UserId: id,
+                    NFTId
+                }
             })
 
             if (!deleted) {

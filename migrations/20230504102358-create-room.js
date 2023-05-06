@@ -9,10 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      roomName: {
+      name: {
         type: Sequelize.STRING
       },
       address: {
+        type: Sequelize.TEXT
+      },
+      name: {
         type: Sequelize.TEXT
       },
       createdAt: {

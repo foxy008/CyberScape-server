@@ -75,6 +75,11 @@ class usersController {
                     include: [{
                         model: NFT
                     }]
+                }, {
+                    model: Rating,
+                    include: [{
+                        model: NFT
+                    }]
                 }]
             })
 

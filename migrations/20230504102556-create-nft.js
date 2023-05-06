@@ -21,6 +21,12 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING
       },
+      averageRating:{
+        type: Sequelize.FLOAT
+      },
+      ratingLength: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

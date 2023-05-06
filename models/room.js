@@ -15,8 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Room.init({
-    roomName: DataTypes.STRING,
-    address: DataTypes.STRING
+    name: DataTypes.STRING,
+    address: DataTypes.STRING,
+    cursor: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Room',
