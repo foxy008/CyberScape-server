@@ -15,7 +15,7 @@ module.exports = {
       address: {
         type: Sequelize.TEXT
       },
-      name: {
+      cursor: {
         type: Sequelize.TEXT
       },
       createdAt: {

@@ -8,6 +8,7 @@ class NFTsController {
             const { address } = req.body;
             let cursor = null;
             let response = [];
+
             // console.log(!cursor);
 
             await Moralis.start({
@@ -28,9 +29,10 @@ class NFTsController {
                     cursor
                   });
 
-                const { pagination, jsonresponse } = newPage;
+                // console.log(newPage);
+                const { pagination, jsonResponse } = newPage;
                 const { page, total, pageSize } = pagination;
-                let { result } = jsonresponse;
+                let { result } = jsonResponse;
                 const { name, symbol } = result[0];
 
                 console.log(
@@ -47,7 +49,7 @@ class NFTsController {
                         cursor
                     },
                     defaults: {
-                        name: `${name} (${symbol} - ${page})`,
+                        name: `${name} (${symbol}) - ${page + 1}`,
                         address,
                         cursor
                     }
@@ -58,10 +60,10 @@ class NFTsController {
                 response.push({
                     RoomId: room.id,
                     NFTs: result.map(nft => {
-                        const { normalized_metadata, token_address } = nft;
+                        const { normalized_metadata, token_hash } = nft;
                         const { name, image, description } = normalized_metadata
                         return {
-                            token: token_address,
+                            token: token_hash,
                             title: name,
                             description,
                             imageUrl: image
@@ -69,20 +71,44 @@ class NFTsController {
                     })
                 });
 
-                response.forEach(room => {
-                    const { RoomId } = room;
-
-                    room.forEach(nft => {
-                        NFT.findOrCreate({
-                            where: {
-                               room,
-                               address
-                            }
-                        })
-                    })
-                })
-
                 if (page === 9) break;
+            }
+
+            for (let room of response ) {
+                const { RoomId, NFTs } = room;
+
+                for (let nft of NFTs) {
+                    const {
+                        token,
+                        title,
+                        description,
+                        imageUrl
+                    } = nft;
+
+                    let [newNFT, created] = await NFT.findOrCreate({
+                        where: {
+                           token
+                        },
+                        defaults: {
+                            token,
+                            title,
+                            description,
+                            imageUrl
+                        }
+                    })
+
+                    if (!created) throw { name: 'NFTExisted'}
+
+                    nft.id = newNFT.id;
+
+                    created = await RoomNFT.create({
+                        NFTId: newNFT.id,
+                        RoomId
+                    })
+
+                    if (!created) throw { name: 'RoomNFTExisted'}
+
+                }
             }
 
             res.status(201).json(response);
