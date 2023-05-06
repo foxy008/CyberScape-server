@@ -19,23 +19,6 @@ class roomsController {
         }
     }
 
-    static async getTopCollection(req, res, next) {
-        try {
-            const topRoom = await Room.findByPk(1, {
-                include: [{
-                    model: RoomNFT,
-                    include: [{
-                        model: NFT
-                    }]
-                }]
-            })
-
-            res.status(200).json(topRoom);
-        } catch (error) {
-            next(error);
-        }
-    }
-
     static async getRoomById(req, res, next) {
         try {
             const { id } = req.params;
@@ -50,14 +33,6 @@ class roomsController {
             })
 
             res.status(200).json(selectedRoom);
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    static async postRoom(req, res, next) {
-        try {
-
         } catch (error) {
             next(error);
         }

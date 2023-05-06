@@ -19,6 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     address: DataTypes.STRING,
     cursor: DataTypes.STRING,
+    ArtistId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Artists',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'Room',

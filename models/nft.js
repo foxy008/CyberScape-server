@@ -28,13 +28,6 @@ module.exports = (sequelize, DataTypes) => {
     ratingLength: {
       type: DataTypes.INTEGER,
       defaultValue: 0
-    },
-    ArtistId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Artists',
-        key: 'id'
-      }
     }
   }, {
     sequelize,
