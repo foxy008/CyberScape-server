@@ -29,7 +29,7 @@ class ratingsController {
             let { averageRating, ratingLength } = ratedNFT;
             averageRating = averageRating * ratingLength
             ratingLength += 1;
-            averageRating = (averageRating + value) / ratingLength
+            averageRating = (averageRating + +value) / ratingLength
 
             await NFT.update({
                 averageRating,
@@ -55,7 +55,12 @@ class ratingsController {
             const NFTId = req.params.id;
             const { value } = req.query;
 
-            const previousRating = await Rating.findByPk(NFTId);
+            const previousRating = await Rating.findOne({
+                where: {
+                    NFTId,
+                    UserId: id
+                }
+            });
 
             const updated = await Rating.update({
                 value
@@ -71,12 +76,10 @@ class ratingsController {
             }
 
             const ratedNFT = await NFT.findByPk(NFTId);
-
             let { averageRating, ratingLength } = ratedNFT;
-
             averageRating = averageRating * ratingLength;
-            averageRating = (averageRating - previousRating.value + value) / ratingLength;
-
+            averageRating = (averageRating - previousRating.value + +value) / ratingLength;
+            // console.log({ averageRating, ratingLength });
             await NFT.update({
                 averageRating,
                 ratingLength
