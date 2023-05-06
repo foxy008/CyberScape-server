@@ -7,10 +7,18 @@ class ratingsController {
             const NFTId = req.params.id;
             const { value } = req.query;
 
+            if (!value) throw { name: 'RatingIsEmpty' }
+
             const [rating, created] = await Rating.findOrCreate({
-                UserId: id,
-                NFTId,
-                value
+                where: {
+                    UserId: id,
+                    NFTId,
+                },
+                defaults: {
+                    UserId: id,
+                    NFTId,
+                    value
+                }
             })
 
             if (!created) {
@@ -18,7 +26,7 @@ class ratingsController {
             }
 
             res.status(201).json({
-                message: `Rating for NFT #${rating.NFTId} by User # ${rating.UserId} has been created`
+                message: `Rating for NFT #${rating.NFTId} by User # ${rating.UserId} has been added`
             });
         } catch (error) {
             next(error);

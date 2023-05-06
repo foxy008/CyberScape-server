@@ -32,6 +32,7 @@ class usersController {
                 password,
             } = req.body;
 
+            console.log(req.body);
             const findUser = await User.findOne({
                 where: {
                     email
