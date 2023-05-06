@@ -1,6 +1,6 @@
 const { comparePass } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
-const { User, NFT, UserFavorite, Rating } = require("../models");
+const { User, NFT, UserFavorite, Rating, RoomNFT, Room, Artist } = require("../models");
 
 class usersController {
     static async register(req, res, next) {
@@ -74,7 +74,16 @@ class usersController {
                 include: [{
                     model: UserFavorite,
                     include: [{
-                        model: NFT
+                        model: NFT,
+                        include: [{
+                            model: RoomNFT,
+                            include: [{
+                                model: Room,
+                                include: [{
+                                    model: Artist
+                                }]
+                            }]
+                        }]
                     }]
                 }, {
                     model: Rating,

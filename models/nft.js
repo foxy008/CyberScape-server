@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       NFT.hasMany(models.RoomNFT);
       NFT.hasMany(models.Rating);
+      NFT.belongsTo(models.Artist);
     }
   }
   NFT.init({
@@ -27,13 +28,6 @@ module.exports = (sequelize, DataTypes) => {
     ratingLength: {
       type: DataTypes.INTEGER,
       defaultValue: 0
-    },
-    ArtistId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Artists',
-        key: 'id'
-      }
     }
   }, {
     sequelize,

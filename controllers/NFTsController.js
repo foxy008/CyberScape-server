@@ -1,11 +1,11 @@
 const Moralis = require("moralis").default;
 const { EvmChain } = require("@moralisweb3/common-evm-utils");
-const { Room, RoomNFT, NFT } = require('../models');
+const { Room, RoomNFT, NFT, Artist } = require('../models');
 
 class NFTsController {
     static async postNewNFTs(req, res, next) {
         try {
-            const { address } = req.body;
+            const { address, avatarUrl, name, website  } = req.body;
             let cursor = null;
             let response = [];
 
@@ -16,8 +16,20 @@ class NFTsController {
                 // ...and any other configuration
             });
 
-
             const chain = EvmChain.ETHEREUM;
+
+            const [artist, created] = Artist.findOrCreate({
+                where: {
+                    name
+                },
+                defaults: {
+                    name,
+                    website,
+                    avatarUrl
+                }
+            });
+
+            const ArtistId = artist.id
 
             while(true) {
                 const newPage = await Moralis.EvmApi.nft.getContractNFTs({
@@ -51,7 +63,8 @@ class NFTsController {
                     defaults: {
                         name: `${name} (${symbol}) - ${page + 1}`,
                         address,
-                        cursor
+                        cursor,
+                        ArtistId
                     }
                 });
 
@@ -112,6 +125,30 @@ class NFTsController {
             }
 
             res.status(201).json(response);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    static async getTopCollection(req, res, next) {
+        try {
+            const topNFTs = await NFT.findAll({
+                include: [{
+                    model: RoomNFT,
+                    include: [{
+                        model: Room,
+                        include: [{
+                            model: Artist
+                        }]
+                    }]
+                }],
+                order: [
+                    ['averageRating', 'DESC']
+                ],
+                limit: 10
+            })
+
+            res.status(200).json(topNFTs);
         } catch (error) {
             next(error);
         }

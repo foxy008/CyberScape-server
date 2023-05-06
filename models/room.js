@@ -12,12 +12,20 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Room.hasMany(models.RoomNFT)
+      Room.belongsTo(models.Artist)
     }
   }
   Room.init({
     name: DataTypes.STRING,
     address: DataTypes.STRING,
-    cursor: DataTypes.STRING
+    cursor: DataTypes.STRING,
+    ArtistId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Artists',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'Room',
