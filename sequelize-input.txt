@@ -5,7 +5,7 @@ npx sequelize model:generate --name User --attributes username:string,email:stri
 npx sequelize model:generate --name Room --attributes name:string,description:text
 
 -- Artist
-npx sequelize model:generate --name Artist --attributes name:string,website:string,bio:text
+npx sequelize model:generate --name Artist --attributes name:string,website:string,avatarUrl:string
 
 -- NFT
 npx sequelize model:generate --name NFT --attributes token:string,title:string,description:text,imageUrl:string,ArtistId:integer

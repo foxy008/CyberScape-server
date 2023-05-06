@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    value: DataTypes.FLOAT
+    value: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Rating',
