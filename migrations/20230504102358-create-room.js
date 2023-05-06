@@ -18,6 +18,13 @@ module.exports = {
       cursor: {
         type: Sequelize.TEXT
       },
+      ArtistId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Artists',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
