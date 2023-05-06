@@ -25,7 +25,7 @@ class NFTsController {
                 defaults: {
                     name,
                     website,
-                    imageUrl
+                    avatarUrl
                 }
             });
 
