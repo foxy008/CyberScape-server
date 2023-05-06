@@ -2,37 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('NFTs', {
+    await queryInterface.createTable('Artists', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      token: {
+      name: {
         type: Sequelize.STRING
       },
-      title: {
+      website: {
         type: Sequelize.STRING
       },
-      description: {
-        type: Sequelize.TEXT
-      },
-      imageUrl: {
+      avatarUrl: {
         type: Sequelize.STRING
-      },
-      averageRating:{
-        type: Sequelize.FLOAT
-      },
-      ratingLength: {
-        type: Sequelize.INTEGER
-      },
-      ArtistId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Artists',
-          key: 'id'
-        }
       },
       createdAt: {
         allowNull: false,
@@ -45,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('NFTs');
+    await queryInterface.dropTable('Artists');
   }
 };

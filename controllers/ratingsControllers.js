@@ -1,4 +1,4 @@
-const { Rating } = require("../models");
+const { Rating, NFT } = require("../models");
 
 class ratingsController {
     static async postNewRating(req, res, next) {
@@ -25,6 +25,22 @@ class ratingsController {
                 throw { name: 'RatingExisted' }
             }
 
+            const ratedNFT = await NFT.findByPk(NFTId);
+            let { averageRating, ratingLength } = ratedNFT;
+            averageRating = averageRating * ratingLength
+            ratingLength += 1;
+            averageRating = (averageRating + value) / ratingLength
+
+            await NFT.update({
+                averageRating,
+                ratingLength
+            },
+            {
+                where: {
+                    id: NFTId
+                }
+            })
+
             res.status(201).json({
                 message: `Rating for NFT #${rating.NFTId} by User # ${rating.UserId} has been added`
             });
@@ -39,6 +55,8 @@ class ratingsController {
             const NFTId = req.params.id;
             const { value } = req.query;
 
+            const previousRating = await Rating.findByPk(NFTId);
+
             const updated = await Rating.update({
                 value
             }, {
@@ -51,6 +69,23 @@ class ratingsController {
             if (!updated) {
                 throw { name: 'RatingNotFound' }
             }
+
+            const ratedNFT = await NFT.findByPk(NFTId);
+
+            let { averageRating, ratingLength } = ratedNFT;
+
+            averageRating = averageRating * ratingLength;
+            averageRating = (averageRating - previousRating.value + value) / ratingLength;
+
+            await NFT.update({
+                averageRating,
+                ratingLength
+            },
+            {
+                where: {
+                    id: NFTId
+                }
+            })
 
             res.status(201).json({
                 message: `Rating for NFT #${NFTId} by User # ${id} has been updated`

@@ -9,7 +9,7 @@ class NFTsController {
             let cursor = null;
             let response = [];
 
-            // console.log(!cursor);
+                // console.log(!cursor);
 
             await Moralis.start({
                 apiKey: process.env.MORALIS_API_KEY,

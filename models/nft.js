@@ -20,8 +20,21 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
     imageUrl: DataTypes.STRING,
-    averageRating: DataTypes.FLOAT,
-    ratingLength: DataTypes.INTEGER
+    averageRating: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0
+    },
+    ratingLength: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    ArtistId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Artists',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'NFT',
