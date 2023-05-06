@@ -13,7 +13,8 @@ class usersController {
             } = req.body;
 
             const registeredUser = await User.create({
-                username,
+                firstName,
+                lastName,
                 email,
                 password
             });
