@@ -11,7 +11,6 @@ class roomsController {
                     }]
                 }]
             })
-            .shift();
 
             res.status(200).json(allRooms);
         } catch (error) {
