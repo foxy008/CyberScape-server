@@ -32,7 +32,7 @@ describe('GET /rooms', () => {
 
     it("should return  a list of rooms with params id and response 404", async  () => {
         const res = await request(app)
-        .get('/rooms/3')
+        .get('/rooms/100')
 
         expect(res.status).toBe(404)
         expect(res.body.msg).toBe("Room not found")

@@ -162,7 +162,10 @@
 <a name='L97'></a><a href='#L97'>97</a>
 <a name='L98'></a><a href='#L98'>98</a>
 <a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -221,31 +224,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -255,12 +233,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Rating, NFT } = require("../models");
 &nbsp;
 class ratingsController {
@@ -292,7 +298,7 @@ class ratingsController {
             let { averageRating, ratingLength } = <span class="cstat-no" title="statement not covered" >ratedNFT;</span>
 <span class="cstat-no" title="statement not covered" >            averageRating = averageRating * ratingLength</span>
 <span class="cstat-no" title="statement not covered" >            ratingLength += 1;</span>
-<span class="cstat-no" title="statement not covered" >            averageRating = (averageRating + value) / ratingLength</span>
+<span class="cstat-no" title="statement not covered" >            averageRating = (averageRating + +value) / ratingLength</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            await NFT.update({</span>
                 averageRating,
@@ -318,7 +324,12 @@ class ratingsController {
             const NFTId = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
             const { value } = <span class="cstat-no" title="statement not covered" >req.query;</span>
 &nbsp;
-            const previousRating = <span class="cstat-no" title="statement not covered" >await Rating.findByPk(NFTId);</span>
+            const previousRating = <span class="cstat-no" title="statement not covered" >await Rating.findOne({</span>
+                where: {
+                    NFTId,
+                    UserId: id
+                }
+            });
 &nbsp;
             const updated = <span class="cstat-no" title="statement not covered" >await Rating.update({</span>
                 value
@@ -334,12 +345,10 @@ class ratingsController {
             }
 &nbsp;
             const ratedNFT = <span class="cstat-no" title="statement not covered" >await NFT.findByPk(NFTId);</span>
-&nbsp;
             let { averageRating, ratingLength } = <span class="cstat-no" title="statement not covered" >ratedNFT;</span>
-&nbsp;
 <span class="cstat-no" title="statement not covered" >            averageRating = averageRating * ratingLength;</span>
-<span class="cstat-no" title="statement not covered" >            averageRating = (averageRating - previousRating.value + value) / ratingLength;</span>
-&nbsp;
+<span class="cstat-no" title="statement not covered" >            averageRating = (averageRating - previousRating.value + +value) / ratingLength;</span>
+            // console.log({ averageRating, ratingLength });
 <span class="cstat-no" title="statement not covered" >            await NFT.update({</span>
                 averageRating,
                 ratingLength
@@ -367,7 +376,7 @@ module.exports = ratingsController;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-06T10:01:18.894Z
+                at 2023-05-07T02:37:44.555Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

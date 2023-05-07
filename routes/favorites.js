@@ -7,4 +7,4 @@ router.use(auth);
 router.post('/:id', userFavoritesController.postNewFavorite);
 router.delete('/:id', userFavoritesController.deleteExistingFavorite);
 
-module.exports = router;
+module.exports = router; 
