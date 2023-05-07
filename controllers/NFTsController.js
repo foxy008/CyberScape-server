@@ -5,11 +5,11 @@ const { Room, RoomNFT, NFT, Artist } = require('../models');
 class NFTsController {
     static async postNewNFTs(req, res, next) {
         try {
-            const { address, avatarUrl, name, website  } = req.body;
+            const { address, avatarUrl, name, website } = req.body;
             let cursor = null;
             let response = [];
 
-                // console.log(!cursor);
+            // console.log(!cursor);
 
             await Moralis.start({
                 apiKey: process.env.MORALIS_API_KEY,
@@ -31,7 +31,7 @@ class NFTsController {
 
             const ArtistId = artist.id
 
-            while(true) {
+            while (true) {
                 const newPage = await Moralis.EvmApi.nft.getContractNFTs({
                     address,
                     chain,
@@ -39,7 +39,7 @@ class NFTsController {
                     limit: 10,
                     disableTotal: false,
                     cursor
-                  });
+                });
 
                 // console.log(newPage);
                 const { pagination, jsonResponse } = newPage;
@@ -48,9 +48,9 @@ class NFTsController {
                 const { name, symbol } = result[0];
 
                 console.log(
-                `Got page ${page} of ${Math.ceil(
-                    total / pageSize
-                )}, ${total} total`
+                    `Got page ${page} of ${Math.ceil(
+                        total / pageSize
+                    )}, ${total} total`
                 );
 
                 cursor = pagination.cursor;
@@ -87,7 +87,7 @@ class NFTsController {
                 if (page === 9) break;
             }
 
-            for (let room of response ) {
+            for (let room of response) {
                 const { RoomId, NFTs } = room;
 
                 for (let nft of NFTs) {
@@ -98,19 +98,24 @@ class NFTsController {
                         imageUrl
                     } = nft;
 
+                    let newImageUrl = imageUrl;
+                    if (newImageUrl.startsWith('ipfs://')) {
+                        newImageUrl = `https://ipfs.io/ipfs/${newImageUrl.substring('ipfs://'.length)}`;
+                    }
+
                     let [newNFT, created] = await NFT.findOrCreate({
                         where: {
-                           token
+                            token
                         },
                         defaults: {
                             token,
                             title,
                             description,
-                            imageUrl
+                            imageUrl: newImageUrl
                         }
                     })
 
-                    if (!created) throw { name: 'NFTExisted'}
+                    if (!created) throw { name: 'NFTExisted' }
 
                     nft.id = newNFT.id;
 
@@ -119,7 +124,7 @@ class NFTsController {
                         RoomId
                     })
 
-                    if (!created) throw { name: 'RoomNFTExisted'}
+                    if (!created) throw { name: 'RoomNFTExisted' }
 
                 }
             }
@@ -129,7 +134,7 @@ class NFTsController {
             next(error);
         }
     }
- 
+
     static async getTopCollection(req, res, next) {
         try {
             const topNFTs = await NFT.findAll({
