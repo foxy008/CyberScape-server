@@ -12,8 +12,8 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(express.urlencoded({ extended: false }));
   app.use(router);
 
-  app.use((error, req, res, next) => {
-    console.log(error);
+app.use((error, req, res, next) => {
+      console.log(error, "<<<<<<<<<<<<");
     switch (error.name) {
         case 'SequelizeValidationError':
             message = error.errors[0].message;
