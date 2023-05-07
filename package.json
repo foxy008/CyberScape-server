@@ -7,7 +7,7 @@
     "test": "npx jest --coverage --runInBand",
     "start": "node server.js",
     "reset": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate &&  npx sequelize db:seed:all",
-    "resetenv": "npx sequelize db:migrate:undo --env test && npx sequelize db:migrate --env test",
+    "resetenv": "npx sequelize db:migrate:undo:all --env test && npx sequelize db:migrate --env test",
     "migenv": "npx sequelize db:migrate --env test"
   },
   "repository": {

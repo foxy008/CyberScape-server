@@ -5,4 +5,5 @@ const router = express.Router();
 router.post('/', NFTsController.postNewNFTs);
 router.get('/', NFTsController.getTopCollection);
 
-module.exports = router;
+module.exports = router; 
+

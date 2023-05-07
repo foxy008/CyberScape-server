@@ -39,7 +39,8 @@ describe("User Routes Users Test", () => {
     describe('POST /users/register - create new user', ()=>{
         it('should create register and response 201', async() => {
             const user = {
-                username : 'user',
+                firstName : 'user',
+                lastName : 'user',
                 email: 'user@mail.com',
                 password : '12345'
             }
@@ -52,7 +53,8 @@ describe("User Routes Users Test", () => {
         })
         it("should email empty and response 400", async() => {
             const user = {
-                username : 'user',
+                firstName : 'user',
+                lastName : 'user',
                 email: null,
                 password: '12345',
             }
@@ -63,12 +65,13 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.msg).toBe("Customer.email cannot be null")
+            expect(response.body.message).toBe("Email is required")
         })
 
         it("should password empty and response 400", async() => {
             const user = {
-                username : 'user',
+                firstName : 'user',
+                lastName : 'user',
                 email: 'user@mail.com',
                 password: null,
             }
@@ -77,14 +80,16 @@ describe("User Routes Users Test", () => {
             .post('/users/register')
             .send(user)
 
+            console.log(response , "ini response");
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.msg).toBe("Customer.password cannot be null")
+            expect(response.body.message).toBe("Password is required")
         })
 
         it("should email empty string and response 400", async() => {
             const user = {
-                username : 'user',
+                firstName : 'user',
+                lastName : 'user',
                 email: '',
                 password: '123123',
             }
@@ -95,12 +100,13 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.msg).toBe("Invalid email format")
+            expect(response.body.message).toBe("Email is required")
         })
 
         it("should password empty string and response 400", async() => {
             const user = {
-                username : 'user',
+                firstName : 'user',
+                lastName : 'user',
                 email: 'user@mail.com',
                 password: '',
             }
@@ -111,12 +117,13 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.msg).toBe("Password is required")
+            expect(response.body.message).toBe("Password is required")
         })
 
         it("should email already and response 400", async() => {
             const user = {
-                username : 'user',
+                firstName : 'user',
+                lastName : 'user',
                 email: 'user@mail.com',
                 password: '12345',
             }
@@ -127,12 +134,13 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.msg).toBe("Email already exists")
+            expect(response.body.message).toBe("Email already used")
         })
 
         it("should Invalid email format and response 400", async() => {
             const user = {
-                username : 'user',
+                firstName : 'user',
+                lastName : 'user',
                 email: 'user',
                 password: '123123',
             }
@@ -143,7 +151,7 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.msg).toBe("Invalid email format")
+            expect(response.body.message).toBe("Invalid email format")
         })
     })
 
@@ -173,7 +181,7 @@ describe("User Routes Users Test", () => {
             .send(user)
 
             expect(response.status).toBe(401)
-            expect(response.body.msg).toBe("Invalid Email / Password")
+            expect(response.body.message).toBe("Wrong email/password")
         })
 
         it("should email empty in database and response 401", async() => {
@@ -187,39 +195,39 @@ describe("User Routes Users Test", () => {
             .send(user)
 
             expect(response.status).toBe(401)
-            expect(response.body.msg).toBe("Invalid Email / Password")
+            expect(response.body.message).toBe("Wrong email/password")
         })
     })
 
-    // describe('GET /users - get profile', () => {
-    //     it('should get profile and response 200', async () => {
-    //         const response = await request(app)
-    //         .get("/users")
-    //         .set({accress_token:validToken})
+    describe('GET /users - get profile', () => {
+        it('should get profile and response 200', async () => {
+            const response = await request(app)
+            .get("/users")
+            .set({accessToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjgzMzU5MjQ0fQ.L4BgcxWwGnfxsbkylVGtdT81t7whSRMtmjAwEDsnsAE"})
 
-    //         expect(response.status).toBe(200)
-    //         expect(typeof response.body[0]).toBe("object")
-    //         expect(Array.isArray(response.body)).toBe(true)
-    //     })
+            expect(response.status).toBe(200)
+            expect(typeof response.body[0]).toBe("object")
+            expect(Array.isArray(response.body)).toBe(true)
+        })
 
-    //     it("should failed get profile because without login and response 401", async function () {
-    //         const res = await request(app)
-    //         .get('/users')
+        it("should failed get profile because without login and response 401", async function () {
+            const res = await request(app)
+            .get('/users')
     
             
-    //         expect(res.status).toBe(401)
-    //         expect(res.body.msg).toBe("Invalid Token")
-    //     })
+            expect(res.status).toBe(403)
+            expect(res.body.message).toBe("Wrong access token")
+        })
     
-    //     it("should failed get profile because token is not valid and response 401", async function () {
-    //         const res = await request(app)
-    //         .get('/users')
-    //         .set({access_token:invalidToken})
+        it("should failed get profile because token is not valid and response 401", async function () {
+            const res = await request(app)
+            .get('/users')
+            .set({accessToken:"123"})
     
     
-    //         expect(res.status).toBe(401)
-    //         expect(res.body.msg).toBe("Invalid Token")
+            expect(res.status).toBe(403)
+            expect(res.body.message).toBe("Wrong access token")
     
-    //     })
-    // })
+        })
+    })
 })

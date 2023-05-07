@@ -54,4 +54,4 @@ class userFavoritesController {
     }
 }
 
-module.exports = userFavoritesController;
+module.exports = userFavoritesController; 

@@ -8,3 +8,4 @@ router.post('/:id', ratingsController.postNewRating);
 router.patch('/:id', ratingsController.patchExistingRating);
 
 module.exports = router;
+

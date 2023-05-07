@@ -129,7 +129,7 @@ class NFTsController {
             next(error);
         }
     }
-
+ 
     static async getTopCollection(req, res, next) {
         try {
             const topNFTs = await NFT.findAll({
