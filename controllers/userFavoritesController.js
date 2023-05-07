@@ -45,7 +45,7 @@ class userFavoritesController {
                 throw { name: 'FavoriteNotFound' }
             }
 
-            res.status(201).json({
+            res.status(200).json({
                 message: `User #${id} has unfavorited NFT #${NFTId}`
             });
         } catch (error) {

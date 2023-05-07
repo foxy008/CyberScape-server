@@ -1,27 +1,26 @@
 const request = require('supertest')
 const app = require('../app')
 const insertMockData = require('../lib/insertMockData')
-const cleanup = require('../lib/cleanup')
-const { UserFavorite } = require("../models");
-const { signToken } = require('../helpers/jwt')
+
+const { signToken } = require('../helpers/jwt');
+const deleteMockData = require('../lib/deleteMockData');
 
 let token;
-let user;
 beforeAll(async function (){
     await insertMockData()
-    user = await UserFavorite.findOne()
-    console.log(user, "ini user favorit");
-    token = signToken( {id : user.id })
+    token = signToken({id : 1 })
 })
 
-
+// afterAll(async function (){
+//     await deleteMockData()
+// })
 describe("POST /favorites",() => {
     it("should success add favorite and response 201", async function () {
         const NFTId = 1
-        const UserId = user.id
+        const UserId = 1
         const res = await request(app)
         .post(`/favorites/${UserId}`)
-        .set({accessToken:token})
+        .set({access_token:token})
         .send({
             NFTId , UserId
         })
@@ -30,13 +29,14 @@ describe("POST /favorites",() => {
 
     it("should failed add favorite and response 404", async function () {
         const NFTId = 1000
-        const UserId = user.id
+        const UserId = 1
         const res = await request(app)
         .post(`/ratings/${UserId}`)
-        .set({accessToken:token})
+        .set({access_token:token})
         .send({
             NFTId , UserId
         })
+        console.log(res);
         expect(res.status).toBe(404)
         expect(res.body.msg).toBe("NFT not found")
     })
@@ -45,10 +45,10 @@ describe("POST /favorites",() => {
 describe("DELETE /favorites",() => {
     it("should success delete favorite and response 200", async function () {
         const NFTId = 1
-        const UserId = user.id
+        const UserId = 1
         const res = await request(app)
         .delete(`/favorites/${UserId}`)
-        .set({accessToken:token})
+        .set({access_token:token})
         .send({
             NFTId , UserId
         })
@@ -56,11 +56,11 @@ describe("DELETE /favorites",() => {
     })
 
     it("should failed patch rating and response 404", async function () {
-        const NFTId = 1000
-        const UserId = user.id
+        const NFTId = 100
+        const UserId = 1
         const res = await request(app)
         .patch(`/ratings/${UserId}`)
-        .set({accessToken:token})
+        .set({access_token:token})
         .send({
             NFTId , UserId
         })

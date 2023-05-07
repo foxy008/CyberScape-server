@@ -13,6 +13,8 @@ class roomsController {
             })
 
             res.status(200).json(allRooms);
+            // console.log(allRooms, "<<<<<<<<<");
+
         } catch (error) {
             next(error);
         }
@@ -30,8 +32,14 @@ class roomsController {
                     }]
                 }]
             })
-
-            res.status(200).json(selectedRoom);
+            console.log(selectedRoom);
+            if(!selectedRoom){
+                throw { name : "RoomNotFound"}
+            } else {
+                res.status(200).json(selectedRoom);
+            }
+            console.log(selectedRoom, ">>>>>");
+            
         } catch (error) {
             next(error);
         }

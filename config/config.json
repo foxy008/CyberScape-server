@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "postgres",
-    "password": "Namikaze",
+    "password": "Namikaze008",
     "database": "cyberscape_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
-    "password": "postgres",
+    "password": "Namikaze008",
     "database": "cyberscape_test",
     "host": "127.0.0.1",
     "dialect": "postgres"

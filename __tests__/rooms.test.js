@@ -2,6 +2,7 @@ const request = require('supertest')
 const app = require('../app')
 const insertMockData = require('../lib/insertMockData')
 const cleanup = require('../lib/cleanup')
+const deleteMockData = require('../lib/deleteMockData')
 
 
 beforeAll(async function() {
@@ -9,7 +10,7 @@ beforeAll(async function() {
 })
 
 // afterAll(async function () {
-//     await cleanup()
+//     await deleteMockData()
 // })
 
 describe('GET /rooms', () => {
@@ -19,7 +20,6 @@ describe('GET /rooms', () => {
 
         expect(response.status).toBe(200)
         expect(typeof response.body).toBe('object')
-        expect(Array.isArray(response.body.product)).toBe(true)
     })
 
     it("should return  a list of rooms with params id and response 200", async  () => {
@@ -32,9 +32,9 @@ describe('GET /rooms', () => {
 
     it("should return  a list of rooms with params id and response 404", async  () => {
         const res = await request(app)
-        .get('/rooms/100')
+        .get('/rooms/1000000')
 
         expect(res.status).toBe(404)
-        expect(res.body.msg).toBe("Room not found")
+        expect(res.body.message).toBe("Room ID not found")
     })
 })

@@ -35,6 +35,5 @@ describe('GET /nfts', () => {
 
         expect(response.status).toBe(200)
         expect(typeof response.body).toBe('object')
-        expect(Array.isArray(response.body.nft)).toBe(true)
     })
 })

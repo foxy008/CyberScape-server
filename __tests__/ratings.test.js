@@ -4,39 +4,32 @@ const insertMockData = require('../lib/insertMockData')
 const cleanup = require('../lib/cleanup')
 const { User } = require('../models')
 const { signToken } = require('../helpers/jwt')
+const deleteMockData = require('../lib/deleteMockData')
 
 let token;
-let user;
 beforeAll(async function (){
     await insertMockData()
-    user = await User.findOne()
-
-    token = signToken( {id : user.id })
+    token = signToken( {id : 1 })
 })
 
+// afterAll(async () => {
+//     await deleteMockData()
+// })
 
 describe("POST /ratings",() => {
     it("should success add rating and response 201", async function () {
         const NFTId = 1
-        const UserId = user.id
         const res = await request(app)
-        .post(`/ratings/${UserId}`)
-        .set({accessToken:token})
-        .send({
-            NFTId , UserId
-        })
+        .post(`/ratings/${NFTId}?value=10`)
+        .set({access_token:token})
         expect(res.status).toBe(201)
     })
 
     it("should failed add rating and response 404", async function () {
         const NFTId = 1000
-        const UserId = user.id
         const res = await request(app)
-        .post(`/ratings/${UserId}`)
-        .set({accessToken:token})
-        .send({
-            NFTId , UserId
-        })
+        .post(`/ratings/${NFTId}`)
+        .set({access_token:token})
         expect(res.status).toBe(404)
         expect(res.body.msg).toBe("NFT not found")
     })
@@ -45,25 +38,17 @@ describe("POST /ratings",() => {
 describe("PATCH /ratings",() => {
     it("should success patch rating and response 201", async function () {
         const NFTId = 1
-        const UserId = user.id
         const res = await request(app)
-        .patch(`/ratings/${UserId}`)
-        .set({accessToken:token})
-        .send({
-            NFTId , UserId
-        })
+        .patch(`/ratings/${NFTId}`)
+        .set({access_token:token})
         expect(res.status).toBe(201)
     })
 
     it("should failed patch rating and response 404", async function () {
         const NFTId = 1000
-        const UserId = user.id
         const res = await request(app)
-        .patch(`/ratings/${UserId}`)
-        .set({accessToken:token})
-        .send({
-            NFTId , UserId
-        })
+        .patch(`/ratings/${NFTId}`)
+        .set({access_token:token})
         expect(res.status).toBe(404)
         expect(res.body.msg).toBe("NFT not found")
     })

@@ -69,9 +69,9 @@ if (process.env.NODE_ENV !== 'production') {
             });
             break;
 
-        case 'MovieNotFound':
+        case 'RoomNotFound':
             res.status(404).json({
-                message: 'Movie ID not found'
+                message: 'Room ID not found'
             });
             break;
 
