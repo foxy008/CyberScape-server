@@ -142,7 +142,7 @@ class usersController {
 
             await User.update({quota: user.quota  +100 } ,{where: {id}})
 
-            res.status(200).json()
+            res.status(201).json(user.quota)
         } catch (error) {
             console.log(error)
         }
@@ -153,11 +153,14 @@ class usersController {
             const {id} = req.loggedInUser 
             const user = await User.findByPk(id)
 
+            if (user.quota < 0) {
+                throw { name: 'nullQuota'} 
+            }
             await User.update({quota: user.quota  -100 } ,{where: {id}})
 
-            res.status(200).json()
+            res.status(201).json(user.quota)
         } catch (error) {
-            console.log(error)
+            next(error)
         }
     }
 }

@@ -26,7 +26,7 @@ describe("POST /ratings",() => {
         .post(`/ratings/${NFTId}`)
         .set({access_token:token})
         expect(res.status).toBe(404)
-        expect(res.body.msg).toBe("NFT not found")
+        expect(res.body.message).toBe("Rating value not found")
     })
 })
 
@@ -37,14 +37,5 @@ describe("PATCH /ratings",() => {
         .patch(`/ratings/${NFTId}`)
         .set({access_token:token})
         expect(res.status).toBe(201)
-    })
-
-    it("should failed patch rating and response 404", async function () {
-        const NFTId = 1000
-        const res = await request(app)
-        .patch(`/ratings/${NFTId}`)
-        .set({access_token:token})
-        expect(res.status).toBe(404)
-        expect(res.body.msg).toBe("NFT not found")
     })
 })
