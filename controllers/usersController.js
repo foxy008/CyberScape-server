@@ -135,9 +135,9 @@ class usersController {
     //     }
     // }
 
-    static async addQouta(req, res, next) {
+    static async addQuota(req, res, next) {
         try {
-            const {id} = req.loggedInUser 
+            const {id} = req.loggedInUser
             const user = await User.findByPk(id)
 
             await User.update({quota: user.quota  +100 } ,{where: {id}})
@@ -148,9 +148,9 @@ class usersController {
         }
     }
 
-    static async reduceQouta(req, res, next) {
+    static async reduceQuota(req, res, next) {
         try {
-            const {id} = req.loggedInUser 
+            const {id} = req.loggedInUser
             const user = await User.findByPk(id)
 
             await User.update({quota: user.quota  -100 } ,{where: {id}})

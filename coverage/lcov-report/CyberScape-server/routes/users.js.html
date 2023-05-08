@@ -15,41 +15,41 @@
         }
     </style>
 </head>
-    
+
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../../index.html">All files</a> / <a href="index.html">CyberScape-server/routes</a> users.js</h1>
         <div class='clearfix'>
-            
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>10/10</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/0</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/0</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>10/10</span>
             </div>
-        
-            
+
+
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -99,8 +99,8 @@ const router = express.Router();
 router.post('/register', usersController.register);
 router.post('/login', usersController.login);
 router.get('/', auth, usersController.getProfile);
-router.patch('/add', auth, usersController.addQouta)
-router.patch('/reduce', auth, usersController.reduceQouta)
+router.patch('/add', auth, usersController.addQuota)
+router.patch('/reduce', auth, usersController.reduceQuota)
 &nbsp;
 &nbsp;
 module.exports = router;
@@ -124,4 +124,3 @@ module.exports = router;
         <script src="../../block-navigation.js"></script>
     </body>
 </html>
-    

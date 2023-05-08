@@ -15,41 +15,41 @@
         }
     </style>
 </head>
-    
+
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../../index.html">All files</a> / <a href="index.html">CyberScape-server/controllers</a> usersController.js</h1>
         <div class='clearfix'>
-            
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">62.26% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>33/53</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>5/6</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>5/10</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">69.04% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>29/42</span>
             </div>
-        
-            
+
+
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -542,7 +542,7 @@ class usersController {
     //     }
     // }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async addQouta(req, res, next) {
+<span class="fstat-no" title="function not covered" >    st</span>atic async addQuota(req, res, next) {
 <span class="cstat-no" title="statement not covered" >        try {</span>
             const {id} = <span class="cstat-no" title="statement not covered" >req.loggedInUser </span>
             const user = <span class="cstat-no" title="statement not covered" >await User.findByPk(id)</span>
@@ -555,7 +555,7 @@ class usersController {
         }
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async reduceQouta(req, res, next) {
+<span class="fstat-no" title="function not covered" >    st</span>atic async reduceQuota(req, res, next) {
 <span class="cstat-no" title="statement not covered" >        try {</span>
             const {id} = <span class="cstat-no" title="statement not covered" >req.loggedInUser </span>
             const user = <span class="cstat-no" title="statement not covered" >await User.findByPk(id)</span>
@@ -595,4 +595,3 @@ module.exports = usersController;
         <script src="../../block-navigation.js"></script>
     </body>
 </html>
-    
