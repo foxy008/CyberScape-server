@@ -10,5 +10,5 @@ router.patch('/add', auth, usersController.addQouta)
 router.patch('/reduce', auth, usersController.reduceQouta)
 
 
-module.exports = router;
 
+module.exports = router;

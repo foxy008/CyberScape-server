@@ -16,9 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   RoomNFT.init({
-    posX: DataTypes.INTEGER,
-    posY: DataTypes.INTEGER,
-    posZ: DataTypes.INTEGER,
+    position: DataTypes.STRING,
     RoomId: {
       type: DataTypes.INTEGER,
       references: {
