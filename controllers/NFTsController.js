@@ -7,7 +7,7 @@ class NFTsController {
         try {
             const { address, avatarUrl, name, website  } = req.body;
             let cursor = null;
-            let response = [];
+            let response;
 
                 // console.log(!cursor);
 
@@ -31,7 +31,7 @@ class NFTsController {
 
             const ArtistId = artist.id
 
-            while(true) {
+            if (true) {
                 const newPage = await Moralis.EvmApi.nft.getContractNFTs({
                     address,
                     chain,
@@ -61,7 +61,7 @@ class NFTsController {
                         cursor
                     },
                     defaults: {
-                        name: `${name} (${symbol}) - ${page + 1}`,
+                        name: `${name} (${symbol})`,
                         address,
                         cursor,
                         ArtistId
@@ -70,8 +70,9 @@ class NFTsController {
 
                 if (!created) throw { name: 'RoomExisted' }
 
-                response.push({
+                response = {
                     RoomId: room.id,
+                    Artist: artist,
                     NFTs: result.map(nft => {
                         const { normalized_metadata, token_hash } = nft;
                         const { name, image, description } = normalized_metadata
@@ -82,13 +83,11 @@ class NFTsController {
                             imageUrl: image
                         }
                     })
-                });
-
-                if (page === 9) break;
+                };
             }
 
-            for (let room of response ) {
-                const { RoomId, NFTs } = room;
+            // for (let room of response ) {
+            const { RoomId, NFTs } = response;
 
                 for (let nft of NFTs) {
                     const {
@@ -122,14 +121,14 @@ class NFTsController {
                     if (!created) throw { name: 'RoomNFTExisted'}
 
                 }
-            }
+            // }
 
             res.status(201).json(response);
         } catch (error) {
             next(error);
         }
     }
- 
+
     static async getTopCollection(req, res, next) {
         try {
             const topNFTs = await NFT.findAll({

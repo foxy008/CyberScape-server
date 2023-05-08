@@ -1,4 +1,4 @@
-const { Room, NFT, RoomNFT } = require("../models");
+const { Room, NFT, RoomNFT, Artist } = require("../models");
 
 class roomsController {
     static async getAllRooms(req, res, next) {
@@ -9,6 +9,8 @@ class roomsController {
                     include: [{
                         model: NFT
                     }]
+                }, {
+                    model: Artist
                 }]
             })
 
