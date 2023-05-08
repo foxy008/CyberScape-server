@@ -131,7 +131,7 @@ describe("User Routes Users Test", () => {
         })
     })
 
-    describe('POST /login - user login', ()=>{
+    describe('POST /users/login - user login', ()=>{
         it("should login user and response 200", async() => {
             const user = {
                 email: 'admin@admin.com',

@@ -58,7 +58,11 @@ module.exports = (sequelize, DataTypes) => {
     quota: {
       type: DataTypes.INTEGER,
       defaultValue: 0
-    }
+    },
+    isVerifed: {
+      type : DataTypes.BOOLEAN,
+      defaultValue : false 
+    },
   }, {
     hooks:{
       beforeCreate: user => {

@@ -1,4 +1,7 @@
 'use strict';
+
+const { sequelize } = require('../models');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -24,6 +27,9 @@ module.exports = {
       },
       quota: {
         type: Sequelize.INTEGER
+      },
+      isVerifed: {
+        type: sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
