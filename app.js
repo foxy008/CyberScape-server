@@ -83,6 +83,11 @@ if (process.env.NODE_ENV !== 'production') {
                 message: 'Favorite had been created before'
             });
             break;
+        case 'nullQuota':
+            res.status(400).json({
+                message: 'Your Quota has empty'
+            });
+            break;
 
         case 'SequelizeForeignKeyConstraintError':
             res.status(400).json({

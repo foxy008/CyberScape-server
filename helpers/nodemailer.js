@@ -1,6 +1,6 @@
 "use strict";
 const nodemailer = require("nodemailer");
-async function nodeMailer(data) {
+async function nodeMailer(email, token) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -14,10 +14,10 @@ async function nodeMailer(data) {
     });
     let info = await transporter.sendMail({
         from: 'admin@cyber-scape.com', // sender address
-        to: data, // list of receivers
-        subject: "Congratulations, you have successfully create New account!", // Subject line
+        to: email, // list of receivers
+        subject: `New Cyberscape User`, // Subject line
         text: "You are new member", // plain text body
-        html: "<b>You are new member</b>", // html body
+        html: `<p>Congratulations! You've created a new Cyberscape account. To access the full features of Cyberscape, please <a href="http://localhost:${3000}/users/verify?=${token}"> verify your account<a>!</p>`, // html body
     });
 
     console.log("Message sent: %s", info.messageId);

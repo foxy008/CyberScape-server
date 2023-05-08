@@ -19,7 +19,13 @@ class usersController {
                 email,
                 password
             });
-            nodeMailer(registeredUser.email)
+
+            const payload = signToken({
+                email: registeredUser.email
+            });
+
+            nodeMailer(registeredUser.email, payload);
+
             res.status(201).json({
                 message: `User with email ${registeredUser.email} has been created`
             });
@@ -137,27 +143,78 @@ class usersController {
 
     static async addQuota(req, res, next) {
         try {
-            const {id} = req.loggedInUser
-            const user = await User.findByPk(id)
+            let { id, quota } = req.foundedUser;
 
-            await User.update({quota: user.quota  +100 } ,{where: {id}})
+            quota += 1;
 
-            res.status(200).json()
+            await User.update({
+                quota
+            } ,{
+                where: {
+                    id
+                }
+            })
+
+            // Status code mestinya 200, cm 201 yang buat post
+            res.status(200).json({
+                message: `Quota for User ID #${id} has been increased to ${quota}`
+            })
         } catch (error) {
-            console.log(error)
+            next(error);
         }
     }
 
     static async reduceQuota(req, res, next) {
         try {
-            const {id} = req.loggedInUser
-            const user = await User.findByPk(id)
+            let { id, quota } = req.foundedUser;
 
-            await User.update({quota: user.quota  -100 } ,{where: {id}})
+            if (quota < 1) {
+                throw { name: 'nullQuota'}
+            }
 
-            res.status(200).json()
+            quota -= 1;
+
+            await User.update({
+                quota
+            } ,{
+                where: {
+                    id
+                }
+            })
+
+            // Status code mestinya 200, cm 201 yang buat post
+            res.status(200).json({
+                message: `Quota for User ID #${id} has been reduced to ${quota}`
+            })
         } catch (error) {
-            console.log(error)
+            next(error)
+        }
+    }
+
+    static async updateVerified ( req , res , next) {
+        try {
+            const { id } = req.foundedUser;
+
+            const updated = await User.update({
+                isVerified: true
+            }, {
+                where: {
+                    id
+                }
+            })
+
+            if (!updated) {
+                throw { name: 'UserUpdateFailed' }
+            }
+
+            // Status code mestinya 200, cm 201 yang buat post
+            res.status(200).json({
+                message : `User with ID #${id} has been verified`
+            });
+
+        } catch (error) {
+            // console.log(error);
+            next(error)
         }
     }
 }

@@ -17,7 +17,7 @@ describe("User Routes Users Test", () => {
                 firstName : 'user',
                 lastName : 'user',
                 email: 'user@mail.com',
-                password : '123456'
+                password : '12345678'
             }
             const response = await request(app)
             .post('/users/register')
@@ -101,7 +101,7 @@ describe("User Routes Users Test", () => {
                 firstName : 'user',
                 lastName : 'user',
                 email: 'user@mail.com',
-                password: '12345',
+                password: '12345678',
             }
 
             const response = await request(app)
@@ -131,11 +131,11 @@ describe("User Routes Users Test", () => {
         })
     })
 
-    describe('POST /login - user login', ()=>{
+    describe('POST /users/login - user login', ()=>{
         it("should login user and response 200", async() => {
             const user = {
                 email: 'admin@admin.com',
-                password : '12345'
+                password : '12345678'
             }
 
             const response = await request(app)
@@ -202,6 +202,24 @@ describe("User Routes Users Test", () => {
             expect(res.status).toBe(403)
             expect(res.body.message).toBe("Wrong access token")
     
+        })
+    })
+
+    describe("PATCH /users/add",() => {
+        it("should success patch add quota and response 201", async function () {
+            const res = await request(app)
+            .patch('/users/add')
+            .set({access_token: createdToken })
+            expect(res.status).toBe(201)
+        })
+    })
+
+    describe("PATCH /users/reduce",() => {
+        it("should success patch reduce quota and response 201", async function () {
+            const res = await request(app)
+            .patch('/users/reduce')
+            .set({access_token: createdToken })
+            expect(res.status).toBe(201)
         })
     })
 })
