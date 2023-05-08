@@ -27,7 +27,7 @@ class usersController {
             next(error);
         }
     }
- 
+
     static async login(req, res, next) {
         try {
             const {
