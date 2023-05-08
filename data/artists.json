@@ -2,51 +2,61 @@
     {
         "name": "Larva Labs (CryptoPunks)",
         "website": "https://opensea.io/collection/cryptopunks",
-        "avatarUrl": "https://i.seadn.io/gae/BdxvLseXcfl57BiuQcQYdJ64v-aI8din7WPk0Pgo3qQFhAUH-B6i-dCqqc_mCkRIzULmwzwecnohLhrcH8A9mpWIZqA7ygc52Sr81hE?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gae/BdxvLseXcfl57BiuQcQYdJ64v-aI8din7WPk0Pgo3qQFhAUH-B6i-dCqqc_mCkRIzULmwzwecnohLhrcH8A9mpWIZqA7ygc52Sr81hE?auto=format&w=1920",
+        "address": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"
     },
     {
         "name": "Larva Labs (Meebits)",
         "website": "https://opensea.io/collection/meebits",
-        "avatarUrl": "https://i.seadn.io/gcs/files/2d036c8c2bed042a1588622c3173677f.png?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gcs/files/2d036c8c2bed042a1588622c3173677f.png?auto=format&w=1920",
+        "address": "0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7"
     },
     {
         "name": "Art Blocks (Curated)",
         "website": "https://opensea.io/collection/art-blocks",
-        "avatarUrl": "https://i.seadn.io/gcs/files/fd5e8fa6bb4e39cddcdb4c9a0b685c5e.png?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gcs/files/fd5e8fa6bb4e39cddcdb4c9a0b685c5e.png?auto=format&w=1920",
+        "address": "0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270"
     },
     {
         "name": "Otherdeed",
         "website": "https://opensea.io/collection/otherdeed",
-        "avatarUrl": "https://i.seadn.io/gae/yIm-M5-BpSDdTEIJRt5D6xphizhIdozXjqSITgK4phWq7MmAU3qE7Nw7POGCiPGyhtJ3ZFP8iJ29TFl-RLcGBWX5qI4-ZcnCPcsY4zI?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gae/yIm-M5-BpSDdTEIJRt5D6xphizhIdozXjqSITgK4phWq7MmAU3qE7Nw7POGCiPGyhtJ3ZFP8iJ29TFl-RLcGBWX5qI4-ZcnCPcsY4zI?auto=format&w=1920",
+        "address": "0x34d85c9CDeB23FA97cb08333b511ac86E1C4E258"
     },
     {
         "name": "CLONE X",
         "website": "https://opensea.io/collection/clonex",
-        "avatarUrl": "https://i.seadn.io/gae/XN0XuD8Uh3jyRWNtPTFeXJg_ht8m5ofDx6aHklOiy4amhFuWUa0JaR6It49AH8tlnYS386Q0TW_-Lmedn0UET_ko1a3CbJGeu5iHMg?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gae/XN0XuD8Uh3jyRWNtPTFeXJg_ht8m5ofDx6aHklOiy4amhFuWUa0JaR6It49AH8tlnYS386Q0TW_-Lmedn0UET_ko1a3CbJGeu5iHMg?auto=format&w=1920",
+        "address": "0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B"
     },
     {
         "name": "Azuki",
         "website": "https://opensea.io/collection/azuki",
-        "avatarUrl": "https://i.seadn.io/gae/H8jOCJuQokNqGBpkBN5wk1oZwO7LM8bNnrHCaekV2nKjnCqw6UB5oaH8XyNeBDj6bA_n1mjejzhFQUP3O1NfjFLHr3FOaeHcTOOT?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gae/H8jOCJuQokNqGBpkBN5wk1oZwO7LM8bNnrHCaekV2nKjnCqw6UB5oaH8XyNeBDj6bA_n1mjejzhFQUP3O1NfjFLHr3FOaeHcTOOT?auto=format&w=1920",
+        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544"
     },
     {
         "name": "Mutant Ape Yacht Club",
         "website": "https://opensea.io/collection/mutant-ape-yacht-club",
-        "avatarUrl": "https://i.seadn.io/gae/lHexKRMpw-aoSyB1WdFBff5yfANLReFxHzt1DOj_sg7mS14yARpuvYcUtsyyx-Nkpk6WTcUPFoG53VnLJezYi8hAs0OxNZwlw6Y-dmI?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gae/lHexKRMpw-aoSyB1WdFBff5yfANLReFxHzt1DOj_sg7mS14yARpuvYcUtsyyx-Nkpk6WTcUPFoG53VnLJezYi8hAs0OxNZwlw6Y-dmI?auto=format&w=1920",
+        "address": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6"
     },
     {
         "name": "Bored Ape Yacht Club",
         "website": "https://opensea.io/collection/boredapeyachtclub",
-        "avatarUrl": "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&w=1920",
+        "address": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
     },
     {
         "name": "DeGods",
         "website": "https://opensea.io/collection/degods",
-        "avatarUrl": "https://i.seadn.io/gcs/files/c6cb0b1d6f2ab61c0efacf00e62e2230.jpg?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gcs/files/c6cb0b1d6f2ab61c0efacf00e62e2230.jpg?auto=format&w=1920",
+        "address": "0x8821BeE2ba0dF28761AffF119D66390D594CD280"
     },
     {
         "name": "Nakamigos",
         "website": "https://opensea.io/collection/nakamigos",
-        "avatarUrl": "https://i.seadn.io/gcs/files/1619b033c453fe36c5d9e2ac451379a7.png?auto=format&w=1920"
+        "avatarUrl": "https://i.seadn.io/gcs/files/1619b033c453fe36c5d9e2ac451379a7.png?auto=format&w=1920",
+        "address": "0xd774557b647330C91Bf44cfEAB205095f7E6c367"
     }
 ]

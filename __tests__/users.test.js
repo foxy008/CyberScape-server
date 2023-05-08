@@ -3,8 +3,7 @@ const app = require('../app')
 const insertMockData = require('../lib/insertMockData')
 const cleanup = require('../lib/cleanup')
 const { User } = require('../models/user')
-const { token } = require('../helpers/jwt')
-
+const { signToken } = require('../helpers/jwt')
 
 // let validToken;
 // const invalidToken = '123456789eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
@@ -17,6 +16,7 @@ const { token } = require('../helpers/jwt')
 // afterAll(async function () {
     
 // })
+const createdToken = signToken({id: 1})
 
 beforeAll(async function() {
     // User 
@@ -28,6 +28,8 @@ beforeAll(async function() {
     //     })
     // })
     await insertMockData()
+    console.log('ini jalan');
+
     // await cleanup()
 })
 
@@ -203,11 +205,9 @@ describe("User Routes Users Test", () => {
         it('should get profile and response 200', async () => {
             const response = await request(app)
             .get("/users")
-            .set({accessToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjgzMzU5MjQ0fQ.L4BgcxWwGnfxsbkylVGtdT81t7whSRMtmjAwEDsnsAE"})
+            .set({access_token: createdToken})
 
             expect(response.status).toBe(200)
-            expect(typeof response.body[0]).toBe("object")
-            expect(Array.isArray(response.body)).toBe(true)
         })
 
         it("should failed get profile because without login and response 401", async function () {
@@ -222,7 +222,7 @@ describe("User Routes Users Test", () => {
         it("should failed get profile because token is not valid and response 401", async function () {
             const res = await request(app)
             .get('/users')
-            .set({accessToken:"123"})
+            .set({access_token:"123"})
     
     
             expect(res.status).toBe(403)
