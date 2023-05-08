@@ -30,14 +30,6 @@ if (process.env.NODE_ENV !== 'production') {
                 case "email must be unique":
                     message = "Email had been registered before."
                     break;
-
-                case "title must be unique":
-                    message = "Movie title had existed in database"
-                    break;
-
-                case "name must be unique":
-                    message = "Genre name had existed in database"
-                    break;
             }
 
             res.status(400).json({
@@ -75,11 +67,6 @@ if (process.env.NODE_ENV !== 'production') {
             });
             break;
 
-        case 'MovieExisted':
-            res.status(400).json({
-                message: 'Movie had been created before'
-            });
-            break;
 
         case 'FavoriteNotFound':
             res.status(404).json({
@@ -93,15 +80,9 @@ if (process.env.NODE_ENV !== 'production') {
             });
             break;
 
-        case 'NoMovieCasts':
-            res.status(400).json({
-                message: 'There must be at least one cast in the movie'
-            })
-            break;
-
         case 'SequelizeForeignKeyConstraintError':
             res.status(400).json({
-                message: 'You must pick a genre for the movie'
+                message: 'Favorite had been created before'
             })
             break;
 

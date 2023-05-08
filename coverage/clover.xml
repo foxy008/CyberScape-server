@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683456966623" clover="3.2.0">
-  <project timestamp="1683456966624" name="All files">
-    <metrics statements="356" coveredstatements="272" conditionals="68" coveredconditionals="35" methods="74" coveredmethods="46" elements="498" coveredelements="353" complexity="0" loc="356" ncloc="356" packages="7" files="26" classes="26"/>
+<coverage generated="1683523631892" clover="3.2.0">
+  <project timestamp="1683523631892" name="All files">
+    <metrics statements="357" coveredstatements="288" conditionals="64" coveredconditionals="35" methods="76" coveredmethods="47" elements="497" coveredelements="370" complexity="0" loc="357" ncloc="357" packages="7" files="28" classes="28"/>
     <package name="CyberScape-server">
-      <metrics statements="50" coveredstatements="34" conditionals="20" coveredconditionals="10" methods="6" coveredmethods="3"/>
+      <metrics statements="42" coveredstatements="34" conditionals="16" coveredconditionals="11" methods="6" coveredmethods="3"/>
       <file name="app.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\app.js">
-        <metrics statements="50" coveredstatements="34" conditionals="20" coveredconditionals="10" methods="6" coveredmethods="3"/>
+        <metrics statements="42" coveredstatements="34" conditionals="16" coveredconditionals="11" methods="6" coveredmethods="3"/>
         <line num="1" count="5" type="cond" truecount="1" falsecount="1"/>
         <line num="2" count="5" type="stmt"/>
         <line num="5" count="5" type="stmt"/>
@@ -17,49 +17,41 @@
         <line num="12" count="5" type="stmt"/>
         <line num="13" count="5" type="stmt"/>
         <line num="15" count="5" type="stmt"/>
-        <line num="16" count="18" type="stmt"/>
-        <line num="17" count="18" type="cond" truecount="8" falsecount="5"/>
+        <line num="16" count="17" type="stmt"/>
+        <line num="17" count="17" type="cond" truecount="8" falsecount="3"/>
         <line num="19" count="5" type="stmt"/>
         <line num="21" count="5" type="stmt"/>
         <line num="24" count="5" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="29" count="1" type="cond" truecount="0" falsecount="3"/>
+        <line num="29" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="49" count="2" type="stmt"/>
-        <line num="52" count="2" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="61" count="2" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="73" count="2" type="stmt"/>
-        <line num="76" count="2" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="85" count="1" type="stmt"/>
-        <line num="88" count="1" type="stmt"/>
-        <line num="91" count="2" type="stmt"/>
-        <line num="94" count="2" type="stmt"/>
-        <line num="97" count="0" type="stmt"/>
-        <line num="100" count="0" type="stmt"/>
-        <line num="103" count="0" type="stmt"/>
-        <line num="106" count="0" type="stmt"/>
-        <line num="109" count="3" type="stmt"/>
-        <line num="112" count="3" type="stmt"/>
-        <line num="116" count="5" type="stmt"/>
-        <line num="123" count="18" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="84" count="2" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="90" count="3" type="stmt"/>
+        <line num="93" count="3" type="stmt"/>
+        <line num="97" count="5" type="stmt"/>
+        <line num="104" count="17" type="cond" truecount="2" falsecount="0"/>
       </file>
     </package>
     <package name="CyberScape-server.controllers">
-      <metrics statements="142" coveredstatements="91" conditionals="32" coveredconditionals="14" methods="27" coveredmethods="14"/>
+      <metrics statements="142" coveredstatements="88" conditionals="32" coveredconditionals="15" methods="27" coveredmethods="14"/>
       <file name="NFTsController.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\controllers\NFTsController.js">
         <metrics statements="46" coveredstatements="7" conditionals="12" coveredconditionals="0" methods="8" coveredmethods="1"/>
         <line num="1" count="5" type="stmt"/>
@@ -110,7 +102,7 @@
         <line num="170" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
       <file name="ratingsControllers.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\controllers\ratingsControllers.js">
-        <metrics statements="33" coveredstatements="25" conditionals="6" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <metrics statements="33" coveredstatements="21" conditionals="6" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="1" count="5" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
@@ -118,8 +110,8 @@
         <line num="8" count="2" type="stmt"/>
         <line num="10" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="24" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="25" count="1" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
@@ -140,13 +132,13 @@
         <line num="79" count="2" type="stmt"/>
         <line num="80" count="1" type="stmt"/>
         <line num="81" count="1" type="stmt"/>
-        <line num="83" count="1" type="stmt"/>
-        <line num="93" count="1" type="stmt"/>
-        <line num="97" count="1" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="97" count="2" type="stmt"/>
         <line num="102" count="5" type="stmt"/>
       </file>
       <file name="roomsController.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\controllers\roomsController.js">
-        <metrics statements="17" coveredstatements="15" conditionals="4" coveredconditionals="2" methods="7" coveredmethods="4"/>
+        <metrics statements="17" coveredstatements="16" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="4"/>
         <line num="1" count="5" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -158,12 +150,12 @@
         <line num="27" count="2" type="stmt"/>
         <line num="29" count="2" type="stmt"/>
         <line num="38" count="2" type="stmt"/>
-        <line num="39" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="40" count="2" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="47" count="2" type="stmt"/>
+        <line num="39" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
         <line num="52" count="5" type="stmt"/>
-        <line num="59" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="59" count="5" type="cond" truecount="2" falsecount="0"/>
       </file>
       <file name="userFavoritesController.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\controllers\userFavoritesController.js">
         <metrics statements="18" coveredstatements="17" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
@@ -172,10 +164,10 @@
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="20" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="28" count="2" type="stmt"/>
+        <line num="20" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
         <line num="33" count="2" type="stmt"/>
         <line num="34" count="2" type="stmt"/>
         <line num="35" count="2" type="stmt"/>
@@ -224,7 +216,7 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="5" type="stmt"/>
         <line num="3" count="5" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
       </file>
       <file name="jwt.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\helpers\jwt.js">
@@ -236,50 +228,65 @@
       </file>
     </package>
     <package name="CyberScape-server.lib">
-      <metrics statements="35" coveredstatements="19" conditionals="6" coveredconditionals="4" methods="18" coveredmethods="6"/>
-      <file name="cleanup.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\lib\cleanup.js">
-        <metrics statements="8" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="3"/>
-        <line num="1" count="4" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="29" count="4" type="stmt"/>
-        <line num="35" count="4" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="48" count="4" type="stmt"/>
-        <line num="52" count="4" type="stmt"/>
-        <line num="59" count="4" type="cond" truecount="2" falsecount="0"/>
+      <metrics statements="44" coveredstatements="38" conditionals="6" coveredconditionals="2" methods="20" coveredmethods="7"/>
+      <file name="insertNFTData.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\lib\insertNFTData.js">
+        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
       </file>
-      <file name="deleteMockData.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\lib\deleteMockData.js">
-        <metrics statements="12" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
+      <file name="insertRatingData.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\lib\insertRatingData.js">
+        <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="50" count="1" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="insertRoomData.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\lib\insertRoomData.js">
+        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
-        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="30" count="1" type="stmt"/>
       </file>
-      <file name="insertMockData.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\lib\insertMockData.js">
-        <metrics statements="15" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="3"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="2" count="5" type="stmt"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="9" count="5" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="18" count="5" type="stmt"/>
-        <line num="22" count="5" type="stmt"/>
-        <line num="29" count="5" type="cond" truecount="2" falsecount="0"/>
+      <file name="insertUserData.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\lib\insertUserData.js">
+        <metrics statements="10" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+      <file name="insertUserFavoriteData.js" path="C:\Users\Arie\Documents\Hacktiv8\Materi\Phase 3\Final-Project\CyberScape-server\lib\insertUserFavoriteData.js">
+        <metrics statements="9" coveredstatements="7" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
     </package>
     <package name="CyberScape-server.middlewares">
