@@ -1,36 +1,26 @@
 [
     {
-    "posX": 10.2,
-    "posY": 3.5,
-    "posZ": -8.1,
+    "position": "0 0.5 0.1",
     "RoomId": "1",
     "NFTId": "1"
     },
     {
-    "posX": -2.4,
-    "posY": 5.1,
-    "posZ": 12.0,
+    "position": "0 0.5 0.1",
     "RoomId": "1",
     "NFTId": "2"
     },
     {
-    "posX": 6.8,
-    "posY": -1.2,
-    "posZ": 4.7,
+    "position": "0 0.5 0.1",
     "RoomId": "1",
     "NFTId": "3"
     },
     {
-    "posX": -5.5,
-    "posY": 2.9,
-    "posZ": -3.2,
+    "position": "0 0.5 0.1",
     "RoomId": "2",
     "NFTId": "4"
     },
     {
-    "posX": 0.0,
-    "posY": 0.0,
-    "posZ": 0.0,
+    "position": "0 0.5 0.1",
     "RoomId": "2",
     "NFTId": "5"
     }

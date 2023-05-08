@@ -17,4 +17,4 @@ npx sequelize model:generate --name Rating --attributes UserId:integer,NFTId:int
 npx sequelize model:generate --name UserFavorite --attributes UserId:integer,NFTId:integer
 
 -- Room NFTs
-npx sequelize model:generate --name RoomNFT --attributes posX:integer,posY:integer,posZ:integer,RoomId:integer,NFTId:integer
+npx sequelize model:generate --name RoomNFT --attributes position:integer,posY:integer,posZ:integer,RoomId:integer,NFTId:integer

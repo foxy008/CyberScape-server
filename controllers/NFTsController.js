@@ -1,6 +1,8 @@
 const Moralis = require("moralis").default;
 const { EvmChain } = require("@moralisweb3/common-evm-utils");
 const { Room, RoomNFT, NFT, Artist } = require('../models');
+const { positions } = require("../data/position");
+// Ganti diatas kalo mau posisi ubah
 
 class NFTsController {
     static async postNewNFTs(req, res, next) {
@@ -8,6 +10,7 @@ class NFTsController {
             const { address, avatarUrl, name, website } = req.body;
             let cursor = null;
             let response;
+            let i = 0;
 
             // console.log(!cursor);
 
@@ -86,47 +89,48 @@ class NFTsController {
                 };
             }
 
-            // for (let room of response ) {
             const { RoomId, NFTs } = response;
 
-                for (let nft of NFTs) {
-                    const {
+            for (let nft of NFTs) {
+                const {
+                    token,
+                    title,
+                    description,
+                    imageUrl
+                } = nft;
+
+                let newImageUrl = imageUrl;
+
+                if (newImageUrl && newImageUrl.startsWith('ipfs://')) {
+                    newImageUrl = `https://ipfs.io/ipfs/${newImageUrl.substring('ipfs://'.length)}`;
+                }
+
+                let [newNFT, created] = await NFT.findOrCreate({
+                    where: {
+                        token
+                    },
+                    defaults: {
                         token,
                         title,
                         description,
-                        imageUrl
-                    } = nft;
-
-                    let newImageUrl = imageUrl;
-                    if (newImageUrl.startsWith('ipfs://')) {
-                        newImageUrl = `https://ipfs.io/ipfs/${newImageUrl.substring('ipfs://'.length)}`;
+                        imageUrl: newImageUrl
                     }
+                })
 
-                    let [newNFT, created] = await NFT.findOrCreate({
-                        where: {
-                            token
-                        },
-                        defaults: {
-                            token,
-                            title,
-                            description,
-                            imageUrl: newImageUrl
-                        }
-                    })
+                if (!created) throw { name: 'NFTExisted' }
 
-                    if (!created) throw { name: 'NFTExisted' }
+                nft.id = newNFT.id;
 
-                    nft.id = newNFT.id;
+                created = await RoomNFT.create({
+                    NFTId: newNFT.id,
+                    RoomId,
+                    position: positions[i]
+                })
 
-                    created = await RoomNFT.create({
-                        NFTId: newNFT.id,
-                        RoomId
-                    })
+                if (!created) throw { name: 'RoomNFTExisted' }
 
-                    if (!created) throw { name: 'RoomNFTExisted' }
-
-                }
-            // }
+                i++;
+            }
 
             res.status(201).json(response);
         } catch (error) {

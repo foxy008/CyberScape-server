@@ -9,14 +9,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      posX: {
-        type: Sequelize.INTEGER
-      },
-      posY: {
-        type: Sequelize.INTEGER
-      },
-      posZ: {
-        type: Sequelize.INTEGER
+      position: {
+        type: Sequelize.STRING
       },
       RoomId: {
         type: Sequelize.INTEGER,
