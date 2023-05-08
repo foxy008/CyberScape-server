@@ -13,7 +13,7 @@ class roomsController {
             })
 
             res.status(200).json(allRooms);
-            // console.log(allRooms, "<<<<<<<<<");
+            console.log(allRooms, "<<<<<<<<<");
 
         } catch (error) {
             next(error);
@@ -24,6 +24,8 @@ class roomsController {
         try {
             const { id } = req.params;
 
+            console.log(id);
+
             const selectedRoom = await Room.findByPk(id, {
                 include: [{
                     model: RoomNFT,
@@ -32,13 +34,14 @@ class roomsController {
                     }]
                 }]
             })
+            
             console.log(selectedRoom);
             if(!selectedRoom){
                 throw { name : "RoomNotFound"}
             } else {
                 res.status(200).json(selectedRoom);
             }
-            console.log(selectedRoom, ">>>>>");
+            
             
         } catch (error) {
             next(error);

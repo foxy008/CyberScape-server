@@ -10,6 +10,8 @@ let token;
 beforeAll(async function (){
     await insertMockData()
     token = signToken( {id : 1 })
+    console.log('ini jalan');
+
 })
 
 // afterAll(async () => {

@@ -7,6 +7,7 @@ const deleteMockData = require('../lib/deleteMockData')
 
 beforeAll(async function() {
     await insertMockData()
+    console.log('ini jalan');
 })
 
 // afterAll(async function () {
@@ -26,13 +27,15 @@ describe('GET /rooms', () => {
         const res = await request(app)
         .get('/rooms/1')
 
+        console.log(res, "ini res");
+
         expect(res.status).toBe(200)
         expect(typeof res.body).toBe("object")
     })
 
     it("should return  a list of rooms with params id and response 404", async  () => {
         const res = await request(app)
-        .get('/rooms/1000000')
+        .get('/rooms/100')
 
         expect(res.status).toBe(404)
         expect(res.body.message).toBe("Room ID not found")

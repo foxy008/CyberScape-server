@@ -28,6 +28,8 @@ beforeAll(async function() {
     //     })
     // })
     await insertMockData()
+    console.log('ini jalan');
+
     // await cleanup()
 })
 

@@ -81,15 +81,15 @@ if (process.env.NODE_ENV !== 'production') {
             });
             break;
 
-        case 'GenreNotFound':
+        case 'FavoriteNotFound':
             res.status(404).json({
-                message: 'Genre ID not found'
+                message: 'Favorite ID not found'
             });
             break;
 
-        case 'GenreExisted':
+        case 'FavoriteExisted':
             res.status(400).json({
-                message: 'Genre had been created before'
+                message: 'Favorite had been created before'
             });
             break;
 

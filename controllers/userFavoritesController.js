@@ -26,7 +26,7 @@ class userFavoritesController {
             });
         } catch (error) {
             next(error);
-        }
+        } 
     }
 
     static async deleteExistingFavorite(req, res, next) {

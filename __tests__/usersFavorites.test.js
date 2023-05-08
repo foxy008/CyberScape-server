@@ -9,6 +9,8 @@ let token;
 beforeAll(async function (){
     await insertMockData()
     token = signToken({id : 1 })
+    console.log('ini jalan');
+
 })
 
 // afterAll(async function (){
@@ -21,24 +23,20 @@ describe("POST /favorites",() => {
         const res = await request(app)
         .post(`/favorites/${UserId}`)
         .set({access_token:token})
-        .send({
-            NFTId , UserId
-        })
+
         expect(res.status).toBe(201)
     })
 
-    it("should failed add favorite and response 404", async function () {
+    it("should failed add favorite and response 400", async function () {
         const NFTId = 1000
         const UserId = 1
         const res = await request(app)
-        .post(`/ratings/${UserId}`)
+        .post(`/favorites/${UserId}`)
         .set({access_token:token})
-        .send({
-            NFTId , UserId
-        })
+
         console.log(res);
-        expect(res.status).toBe(404)
-        expect(res.body.msg).toBe("NFT not found")
+        expect(res.status).toBe(400)
+        expect(res.body.message).toBe("Favorite had been created before")
     })
 })
 
@@ -49,22 +47,18 @@ describe("DELETE /favorites",() => {
         const res = await request(app)
         .delete(`/favorites/${UserId}`)
         .set({access_token:token})
-        .send({
-            NFTId , UserId
-        })
+
         expect(res.status).toBe(200)
     })
 
-    it("should failed patch rating and response 404", async function () {
-        const NFTId = 100
+    it("should failed delete favorite and response 404", async function () {
+        const NFTId = 10000
         const UserId = 1
         const res = await request(app)
-        .patch(`/ratings/${UserId}`)
+        .delete(`/favorites/${UserId}`)
         .set({access_token:token})
-        .send({
-            NFTId , UserId
-        })
+
         expect(res.status).toBe(404)
-        expect(res.body.msg).toBe("NFT not found")
+        expect(res.body.message).toBe("Favorite ID not found")
     })
 })
