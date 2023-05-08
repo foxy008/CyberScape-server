@@ -66,7 +66,11 @@ if (process.env.NODE_ENV !== 'production') {
                 message: 'Room ID not found'
             });
             break;
-
+        case 'RatingIsEmpty':
+            res.status(404).json({
+                message: 'Rating value not found'
+            });
+            break;
 
         case 'FavoriteNotFound':
             res.status(404).json({

@@ -19,7 +19,7 @@ class usersController {
                 email,
                 password
             });
-            nodeMailer(user.email)
+            nodeMailer(registeredUser.email)
             res.status(201).json({
                 message: `User with email ${registeredUser.email} has been created`
             });
