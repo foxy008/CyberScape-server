@@ -1,22 +1,15 @@
 const request = require('supertest')
 const app = require('../app')
-const insertMockData = require('../lib/insertMockData')
-const cleanup = require('../lib/cleanup')
-const { User } = require('../models')
+const insertRatingData = require('../lib/insertRatingData')
 const { signToken } = require('../helpers/jwt')
-const deleteMockData = require('../lib/deleteMockData')
 
 let token;
 beforeAll(async function (){
-    await insertMockData()
+    await insertRatingData()
     token = signToken( {id : 1 })
-    console.log('ini jalan');
 
 })
 
-// afterAll(async () => {
-//     await deleteMockData()
-// })
 
 describe("POST /ratings",() => {
     it("should success add rating and response 201", async function () {

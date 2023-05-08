@@ -1,40 +1,13 @@
 const request = require('supertest')
 const app = require('../app')
-const insertMockData = require('../lib/insertMockData')
-const cleanup = require('../lib/cleanup')
-const { User } = require('../models/user')
+const insertUserData = require('../lib/insertUserData')
 const { signToken } = require('../helpers/jwt')
 
-// let validToken;
-// const invalidToken = '123456789eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
-
-// const userTest = {
-//     email: 'user@mail.com',
-//     password: '12345'
-// }
-
-// afterAll(async function () {
-    
-// })
 const createdToken = signToken({id: 1})
 
 beforeAll(async function() {
-    // User 
-    // .create(userTest)
-    // .then((res) => {
-    //     validToken = token({
-    //         id : res.id,
-    //         email: res.email
-    //     })
-    // })
-    await insertMockData()
-    console.log('ini jalan');
-
-    // await cleanup()
+    await insertUserData()
 })
-
-
-
 
 
 describe("User Routes Users Test", () => {
@@ -44,7 +17,7 @@ describe("User Routes Users Test", () => {
                 firstName : 'user',
                 lastName : 'user',
                 email: 'user@mail.com',
-                password : '12345'
+                password : '123456'
             }
             const response = await request(app)
             .post('/users/register')
@@ -53,6 +26,7 @@ describe("User Routes Users Test", () => {
             expect(response.status).toBe(201)
             expect(response.body).toEqual(expect.any(Object))    
         })
+
         it("should email empty and response 400", async() => {
             const user = {
                 firstName : 'user',
@@ -160,7 +134,7 @@ describe("User Routes Users Test", () => {
     describe('POST /login - user login', ()=>{
         it("should login user and response 200", async() => {
             const user = {
-                email: 'user@mail.com',
+                email: 'admin@admin.com',
                 password : '12345'
             }
 

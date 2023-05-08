@@ -63,6 +63,8 @@ module.exports = (sequelize, DataTypes) => {
     hooks:{
       beforeCreate: user => {
         user.password = hashPass(user.password);
+        user.firstName = user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
+        user.lastName = user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1);
         return user;
       }
     },

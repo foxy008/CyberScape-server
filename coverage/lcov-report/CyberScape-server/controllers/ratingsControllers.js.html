@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.47% </span>
+                <span class="strong">94.11% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>26/34</span>
+                <span class='fraction'>32/34</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.75% </span>
+                <span class="strong">93.93% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/33</span>
+                <span class='fraction'>31/33</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -189,16 +189,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,13 +208,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -290,17 +290,17 @@ class ratingsController {
                 }
             })
 &nbsp;
-            <span class="missing-if-branch" title="else path not taken" >E</span>if (!created) {
-                throw { name: 'RatingExisted' }
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!created) {
+<span class="cstat-no" title="statement not covered" >                throw { name: 'RatingExisted' }</span>
             }
 &nbsp;
-            const ratedNFT = <span class="cstat-no" title="statement not covered" >await NFT.findByPk(NFTId);</span>
-            let { averageRating, ratingLength } = <span class="cstat-no" title="statement not covered" >ratedNFT;</span>
-<span class="cstat-no" title="statement not covered" >            averageRating = averageRating * ratingLength</span>
-<span class="cstat-no" title="statement not covered" >            ratingLength += 1;</span>
-<span class="cstat-no" title="statement not covered" >            averageRating = (averageRating + +value) / ratingLength</span>
+            const ratedNFT = await NFT.findByPk(NFTId);
+            let { averageRating, ratingLength } = ratedNFT;
+            averageRating = averageRating * ratingLength
+            ratingLength += 1;
+            averageRating = (averageRating + +value) / ratingLength
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            await NFT.update({</span>
+            await NFT.update({
                 averageRating,
                 ratingLength
             },
@@ -310,7 +310,7 @@ class ratingsController {
                 }
             })
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            res.status(201).json({</span>
+            res.status(201).json({
                 message: `Rating for NFT #${rating.NFTId} by User # ${rating.UserId} has been added`
             });
         } catch (error) {
@@ -376,7 +376,7 @@ module.exports = ratingsController;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-07T10:56:06.382Z
+                at 2023-05-08T06:52:12.097Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

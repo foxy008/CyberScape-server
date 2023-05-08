@@ -1,13 +1,9 @@
 const request = require('supertest')
 const app = require('../app')
-const insertMockData = require('../lib/insertMockData')
-const cleanup = require('../lib/cleanup')
-
+const insertNFTData = require('../lib/insertNFTData')
 
 beforeAll(async function() {
-    await insertMockData()
-    console.log('ini jalan');
-
+    await insertNFTData()
 })
 
 // afterAll(async function () {

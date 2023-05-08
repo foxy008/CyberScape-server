@@ -1,18 +1,12 @@
 const request = require('supertest')
 const app = require('../app')
-const insertMockData = require('../lib/insertMockData')
-const cleanup = require('../lib/cleanup')
-const deleteMockData = require('../lib/deleteMockData')
+const insertRoomData = require('../lib/insertRoomData')
 
 
 beforeAll(async function() {
-    await insertMockData()
-    console.log('ini jalan');
+    await insertRoomData()
+  
 })
-
-// afterAll(async function () {
-//     await deleteMockData()
-// })
 
 describe('GET /rooms', () => {
     it("should return a list of rooms and response 200" , async () => {
@@ -26,8 +20,6 @@ describe('GET /rooms', () => {
     it("should return  a list of rooms with params id and response 200", async  () => {
         const res = await request(app)
         .get('/rooms/1')
-
-        console.log(res, "ini res");
 
         expect(res.status).toBe(200)
         expect(typeof res.body).toBe("object")
