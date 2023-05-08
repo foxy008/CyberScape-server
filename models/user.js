@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
-    isVerifed: {
+    isVerified: {
       type : DataTypes.BOOLEAN,
       defaultValue : false 
     },

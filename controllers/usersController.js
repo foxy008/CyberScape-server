@@ -163,6 +163,23 @@ class usersController {
             next(error)
         }
     }
+
+    static async updateVerifed ( req , res , next) {
+        try {
+            const { id } = req.params 
+            const user = await User.update({isVerified : true }, {
+                where : {
+                    id 
+                }
+            })
+
+            res.status(201).json({message : "Success verify email"})
+
+        } catch (error) {
+            console.log(error);
+            next(error)
+        }
+    }
 }
 
 module.exports = usersController;

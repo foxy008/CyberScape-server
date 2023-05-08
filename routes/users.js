@@ -8,6 +8,7 @@ router.post('/login', usersController.login);
 router.get('/', auth, usersController.getProfile);
 router.patch('/add', auth, usersController.addQouta)
 router.patch('/reduce', auth, usersController.reduceQouta)
+router.patch('/isVerified/:id', usersController.updateVerifed)
 
 
 

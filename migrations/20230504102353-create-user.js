@@ -28,8 +28,9 @@ module.exports = {
       quota: {
         type: Sequelize.INTEGER
       },
-      isVerifed: {
-        type: sequelize.BOOLEAN
+      isVerified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
