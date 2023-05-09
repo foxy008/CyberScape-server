@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Rating);
       User.hasMany(models.UserFavorite);
+      User.hasMany(models.Log)
     }
   }
   User.init({
