@@ -253,6 +253,8 @@ class usersController {
                 message : `User with ID #${id} has been verified`
             });
 
+            res.redirect(process.env.CLIENT_URL);
+
         } catch (error) {
             console.log(error);
             next(error)

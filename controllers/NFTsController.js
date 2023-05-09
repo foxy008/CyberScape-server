@@ -2,131 +2,139 @@ const Moralis = require("moralis").default;
 const { EvmChain } = require("@moralisweb3/common-evm-utils");
 const { Room, RoomNFT, NFT, Artist } = require('../models');
 const { positions } = require("../data/position");
+const artists = require("../data/artists");
 // Ganti diatas kalo mau posisi ubah
 
 class NFTsController {
     static async postNewNFTs(req, res, next) {
         try {
-            const { address, avatarUrl, name, website } = req.body;
-            let cursor = null;
             let response;
-            let i = 0;
+            for (let i = 0; i < artists.length; i++) {
+                const { address, avatarUrl, name, website } = artists[i];
+                let cursor = null;
+             
 
-            // console.log(!cursor);
+                // console.log(!cursor);
 
-            const chain = EvmChain.ETHEREUM;
+                const chain = EvmChain.ETHEREUM;
 
-            const [artist, created] = await Artist.findOrCreate({
-                where: {
-                    name
-                },
-                defaults: {
-                    name,
-                    website,
-                    avatarUrl
-                }
-            });
-
-            const ArtistId = artist.id
-
-            if (true) {
-                const newPage = await Moralis.EvmApi.nft.getContractNFTs({
-                    address,
-                    chain,
-                    normalizeMetadata: true,
-                    mediaItems: true,
-                    limit: 10,
-                    disableTotal: false,
-                    cursor
-                });
-
-                // console.log(newPage);
-                const { pagination, jsonResponse } = newPage;
-                const { page, total, pageSize } = pagination;
-                let { result } = jsonResponse;
-                const { name, symbol } = result[0];
-
-                console.log(
-                    `Got page ${page} of ${Math.ceil(
-                        total / pageSize
-                    )}, ${total} total`
-                );
-
-                cursor = pagination.cursor;
-
-                const [room, created] = await Room.findOrCreate({
+                const [artist, created] = await Artist.findOrCreate({
                     where: {
-                        address,
-                        cursor
+                        name
                     },
                     defaults: {
-                        name: `${name} (${symbol})`,
-                        address,
-                        cursor,
-                        ArtistId
+                        name,
+                        website,
+                        avatarUrl
                     }
                 });
 
-                if (!created) throw { name: 'RoomExisted' }
+                // if (!created) throw { name: 'RoomExisted' }
 
-                response = {
-                    RoomId: room.id,
-                    Artist: artist,
-                    NFTs: result.map(nft => {
-                        const { normalized_metadata, token_hash, media } = nft;
-                        const { name, description } = normalized_metadata
-                        const image = media.media_collection.medium.url
-                        return {
-                            token: token_hash,
-                            title: name,
-                            description,
-                            imageUrl: image
+                const ArtistId = artist.id
+
+                if (true) {
+                    const newPage = await Moralis.EvmApi.nft.getContractNFTs({
+                        address,
+                        chain,
+                        normalizeMetadata: true,
+                        mediaItems: true,
+                        limit: 10,
+                        disableTotal: false,
+                        cursor
+                    });
+
+                    // console.log(newPage);
+                    const { pagination, jsonResponse } = newPage;
+                    const { page, total, pageSize } = pagination;
+                    let { result } = jsonResponse;
+                    const { name, symbol } = result[0];
+
+                    console.log(
+                        `Got page ${page} of ${Math.ceil(
+                            total / pageSize
+                        )}, ${total} total`
+                    );
+
+                    cursor = pagination.cursor;
+
+                    const [room, created] = await Room.findOrCreate({
+                        where: {
+                            address,
+                            cursor
+                        },
+                        defaults: {
+                            name: `${name} (${symbol})`,
+                            address,
+                            cursor,
+                            ArtistId
                         }
-                    })
-                };
-            }
+                    });
 
-            const { RoomId, NFTs } = response;
+                    if (!created) continue
+                    //  throw { name: 'RoomExisted' }
 
-            for (let nft of NFTs) {
-                const {
-                    token,
-                    title,
-                    description,
-                    imageUrl
-                } = nft;
-
-                let newImageUrl = imageUrl;
-
-                if (newImageUrl && newImageUrl.startsWith('ipfs://')) {
-                    newImageUrl = `https://ipfs.io/ipfs/${newImageUrl.substring('ipfs://'.length)}`;
+                    response = {
+                        RoomId: room.id,
+                        Artist: artist,
+                        NFTs: result.map(nft => {
+                            const { normalized_metadata, token_hash, media } = nft;
+                            const { name, description } = normalized_metadata
+                            const image = media.media_collection.medium.url
+                            return {
+                                token: token_hash,
+                                title: name,
+                                description,
+                                imageUrl: image
+                            }
+                        })
+                    };
                 }
 
-                let [newNFT, created] = await NFT.findOrCreate({
-                    where: {
-                        token
-                    },
-                    defaults: {
+                const { RoomId, NFTs } = response;
+
+                for (let nft of NFTs) {
+                    const {
                         token,
                         title,
                         description,
-                        imageUrl: newImageUrl
+                        imageUrl
+                    } = nft;
+
+                    let newImageUrl = imageUrl;
+
+                    if (newImageUrl && newImageUrl.startsWith('ipfs://')) {
+                        newImageUrl = `https://ipfs.io/ipfs/${newImageUrl.substring('ipfs://'.length)}`;
                     }
-                })
 
-                if (!created) throw { name: 'NFTExisted' }
+                    let [newNFT, created] = await NFT.findOrCreate({
+                        where: {
+                            token
+                        },
+                        defaults: {
+                            token,
+                            title,
+                            description,
+                            imageUrl: newImageUrl
+                        }
+                    })
 
-                nft.id = newNFT.id;
+                    if (!created) continue
+                    // throw { name: 'NFTExisted' }
 
-                created = await RoomNFT.create({
-                    NFTId: newNFT.id,
-                    RoomId,
-                    position: positions[i]
-                })
+                    nft.id = newNFT.id;
 
-                if (!created) throw { name: 'RoomNFTExisted' }
+                    created = await RoomNFT.create({
+                        NFTId: newNFT.id,
+                        RoomId,
+                        position: positions[i]
+                    })
 
-                i++;
+                    if (!created) {
+                        throw { name: 'RoomNFTExisted' }}
+
+                }
+
             }
 
             res.status(201).json(response);
