@@ -8,7 +8,7 @@ module.exports = async function author(req, res, next) {
         req.foundedUser = foundedUser;
 
         if (isVerified) {
-            next()
+            next() 
         } else {
             throw { name: 'UserNotAvailable'}
         }
