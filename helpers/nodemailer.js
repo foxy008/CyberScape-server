@@ -17,7 +17,7 @@ async function nodeMailer(email, token) {
         to: email, // list of receivers
         subject: `New Cyberscape User`, // Subject line
         text: "You are new member", // plain text body
-        html: `<p>Congratulations! You've created a new Cyberscape account. To access the full features of Cyberscape, please <a href="http://localhost:${3000}/users/verify?=${token}"> verify your account<a>!</p>`, // html body
+        html: `<p>Congratulations! You've created a new Cyberscape account. To access the full features of Cyberscape, please <a href="http://${process.env.CLIENT_URL}?verify=${token}"> verify your account<a>!</p>`, // html body
     });
 
     console.log("Message sent: %s", info.messageId);
