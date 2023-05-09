@@ -2,6 +2,7 @@ const { comparePass } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const nodeMailer = require('../helpers/nodemailer');
 const { User, NFT, UserFavorite, Rating, RoomNFT, Room, Artist } = require("../models");
+const midtransClient = require('midtrans-client');
 
 class usersController {
     static async register(req, res, next) {
@@ -108,38 +109,38 @@ class usersController {
         }
     }
 
-    // static async getToken(req, res, next) {
-    //     try {
-    //         // Create Snap API instance
-    //         const user = req.user
-    //         let snap = new midtransClient.Snap({
-    //             // Set to true if you want Production Environment (accept real transaction).
-    //             isProduction: false,
-    //             serverKey: 'SB-Mid-server-21Nn9InDllmbTCgkwfEoFZN4'
-    //         });
-    //         const topUp = await User.findByPk(id)
+    static async getToken(req, res, next) {
+        try {
+            // Create Snap API instance
+            const { firstName, lastName, email, id } = req.loggedInUser;
+            let snap = new midtransClient.Snap({
+                // Set to true if you want Production Environment (accept real transaction).
+                isProduction: false,
+                serverKey: process.env.MIDTRANS_SERVER_KEY
+            });
 
-    //         let parameter = {
-    //             "transaction_details": {
-    //                 "order_id": "TRANSACTION_ID_" + Math.floor(Math.random() * 238368756478) + 12384576517,
-    //                 "gross_amount": topUp.price
-    //             },
-    //             "credit_card": {
-    //                 "secure": true
-    //             },
-    //             "customer_details": {
-    //                 "firstName": user.firstName,
-    //                 "lastName": user.lastName,
-    //                 "email": user.email,
-    //             }
-    //         };
+            let parameter = {
+                "transaction_details": {
+                    "order_id": "TRANSACTION_ID_" + new Date().getTime() + '_' + id,
+                    "gross_amount": 100_000
+                },
+                "credit_card": {
+                    "secure": true
+                },
+                "customer_details": {
+                    firstName,
+                    lastName,
+                    email
+                }
+            };
 
-    //         const midtrans_token = await snap.createTransaction(parameter)
-    //         res.status(201).json(midtrans_token)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+            const midtrans_token = await snap.createTransaction(parameter);
+            console.log("Retrieved snap token:", midtrans_token);
+            res.status(201).json(midtrans_token)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     static async addQuota(req, res, next) {
         try {

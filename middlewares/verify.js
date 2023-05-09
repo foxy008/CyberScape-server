@@ -14,6 +14,7 @@ module.exports = async function verify(req, res, next) {
         if (email === verifiedEmail) {
             next();
         } else {
+            // Ntar dimasukkin nya 404 Unauthorized ya
             throw { name: 'WrongVerifyToken' }
         }
 

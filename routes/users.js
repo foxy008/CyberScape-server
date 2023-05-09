@@ -11,6 +11,7 @@ router.get('/', auth, usersController.getProfile);
 router.patch('/add', auth, author, usersController.addQuota);
 router.patch('/reduce', auth, author, usersController.reduceQuota);
 router.patch('/', auth, verify, usersController.updateVerified);
+router.get('/payment', auth, usersController.getToken)
 
 
 module.exports = router;
