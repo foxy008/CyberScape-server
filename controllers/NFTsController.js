@@ -14,11 +14,6 @@ class NFTsController {
 
             // console.log(!cursor);
 
-            await Moralis.start({
-                apiKey: process.env.MORALIS_API_KEY,
-                // ...and any other configuration
-            });
-
             const chain = EvmChain.ETHEREUM;
 
             const [artist, created] = await Artist.findOrCreate({
