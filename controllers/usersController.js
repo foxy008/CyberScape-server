@@ -144,6 +144,7 @@ class usersController {
             await Log.create({
                 UserId : id, orderId : order_id
             })
+            
 
             res.status(201).json(midtrans_token)
         } catch (error) {

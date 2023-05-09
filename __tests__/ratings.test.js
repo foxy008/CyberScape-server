@@ -28,6 +28,28 @@ describe("POST /ratings",() => {
         expect(res.status).toBe(404)
         expect(res.body.message).toBe("Rating value not found")
     })
+
+    it("should failed add rating because without login and response 401", async function () {
+            const NFTId = 1
+            const res = await request(app)
+            .post(`/ratings/${NFTId}`)
+    
+            
+            expect(res.status).toBe(403)
+            expect(res.body.message).toBe("Wrong access token")
+        })
+    
+        it("should failed add rating because token is not valid and response 401", async function () {
+            const NFTId = 1
+            const res = await request(app)
+            .get(`/ratings/${NFTId}`)
+            .set({access_token:"123"})
+    
+    
+            expect(res.status).toBe(403)
+            expect(res.body.message).toBe("Wrong access token")
+    
+        })
 })
 
 describe("PATCH /ratings",() => {
@@ -38,4 +60,26 @@ describe("PATCH /ratings",() => {
         .set({access_token:token})
         expect(res.status).toBe(201)
     })
+
+       it("should failed patch rating because without login and response 401", async function () {
+            const NFTId = 1
+            const res = await request(app)
+            .post(`/ratings/${NFTId}`)
+    
+            
+            expect(res.status).toBe(403)
+            expect(res.body.message).toBe("Wrong access token")
+        })
+    
+        it("should failed patch rating because token is not valid and response 401", async function () {
+            const NFTId = 1
+            const res = await request(app)
+            .get(`/ratings/${NFTId}`)
+            .set({access_token:"123"})
+    
+    
+            expect(res.status).toBe(403)
+            expect(res.body.message).toBe("Wrong access token")
+    
+        })
 })
