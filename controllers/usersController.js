@@ -162,14 +162,14 @@ class usersController {
                     orderId: order_id
                 }
             })
-            console.log(log);
+            // console.log(log);
 
             // Cek status dari Log yang dibalikin dari db Logs yang diatas
             if(log.status !== "Pending"){
                 throw { name : "InvalidOrder"}
             }
             // Jika 200 maka dirubah status pada Log = Success, lainnya status pada log = Failed
-            if (status_code != 200) {
+            if (status_code !== 200) {
                 await Log.update({status: "Failed"},{
                     where : { id }
                 })
@@ -177,7 +177,7 @@ class usersController {
             }
 
             // Dibawah ini if berhasil , yang kondisi bukan status code 200 di throw error
-            if(status_code == 200){
+            if(status_code === 200){
                 await Log.update({status: "Success"},{
                     where : { id }
                 })
