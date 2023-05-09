@@ -8,14 +8,10 @@ const router = require('./routes');
 const app = express();
 const Moralis = require("moralis").default;
 
-
-
 Moralis.start({
     apiKey: process.env.MORALIS_API_KEY,
     // ...and any other configuration
 });
-
-
 
 app.use(cors());
 app.use(express.json());
