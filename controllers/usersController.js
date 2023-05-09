@@ -119,9 +119,11 @@ class usersController {
                 serverKey: process.env.MIDTRANS_SERVER_KEY
             });
 
+            const order_id = new Date().getTime() + '_' + id;
+
             let parameter = {
                 "transaction_details": {
-                    "order_id": "TRANSACTION_ID_" + new Date().getTime() + '_' + id,
+                    order_id,
                     "gross_amount": 100_000
                 },
                 "credit_card": {
@@ -136,6 +138,9 @@ class usersController {
 
             const midtrans_token = await snap.createTransaction(parameter);
             console.log("Retrieved snap token:", midtrans_token);
+
+            // Tambahin masukin entri ke tabel Logs
+
             res.status(201).json(midtrans_token)
         } catch (error) {
             console.log(error)
@@ -144,6 +149,16 @@ class usersController {
 
     static async addQuota(req, res, next) {
         try {
+            // Dapetin query order_id nya & status_code
+
+            // Cari entri Logs dimana order_idnya sama kayak dari query
+
+            // Cek status dari Log yang dibalikin dari db Logs yang diatas
+
+            // Jika 200 maka dirubah status pada Log = Success, lainnya status pada log = Failed
+
+            // Dibawah ini if berhasil , yang kondisi bukan status code 200 di throw error
+
             let { id, quota } = req.foundedUser;
 
             quota += 1;
