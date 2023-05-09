@@ -3,7 +3,7 @@ const app = require('../app')
 const insertUserData = require('../lib/insertUserData')
 const { signToken } = require('../helpers/jwt')
 
-const createdToken = signToken({id: 1})
+const createdToken = signToken({id: 5})
 
 beforeAll(async function() {
     await insertUserData()
@@ -206,20 +206,30 @@ describe("User Routes Users Test", () => {
     })
 
     describe("PATCH /users/add",() => {
-        it("should success patch add quota and response 201", async function () {
+        it("should success patch add quota and response 200", async function () {
             const res = await request(app)
             .patch('/users/add')
             .set({access_token: createdToken })
-            expect(res.status).toBe(201)
+
+            expect(res.status).toBe(200)
         })
     })
 
     describe("PATCH /users/reduce",() => {
-        it("should success patch reduce quota and response 201", async function () {
+        it("should success patch reduce quota and response 200", async function () {
             const res = await request(app)
             .patch('/users/reduce')
             .set({access_token: createdToken })
-            expect(res.status).toBe(201)
+            expect(res.status).toBe(200)
+        })
+    })
+
+    describe("PATCH /users",() => {
+        it("should success patch update verify and response 200", async function () {
+            const res = await request(app)
+            .patch('/users')
+            .set({access_token: createdToken })
+            expect(res.status).toBe(200)
         })
     })
 })
