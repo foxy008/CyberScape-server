@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Rating);
       User.hasMany(models.UserFavorite);
+      User.hasMany(models.Log)
     }
   }
   User.init({
@@ -57,11 +58,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     quota: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 3
     },
     isVerified: {
       type : DataTypes.BOOLEAN,
-      defaultValue : false 
+      defaultValue : false
     },
   }, {
     hooks:{
