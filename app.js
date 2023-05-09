@@ -1,24 +1,28 @@
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
-  }
+}
 
-  const cors = require('cors');
-  const express = require('express');
-  const router = require('./routes');
-  const app = express();
-  const Moralis = require("moralis").default;
+const cors = require('cors');
+const express = require('express');
+const router = require('./routes');
+const app = express();
+const Moralis = require("moralis").default;
 
-  Moralis.start({
+
+
+Moralis.start({
     apiKey: process.env.MORALIS_API_KEY,
     // ...and any other configuration
 });
 
-  app.use(cors());
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
-  app.use(router);
 
-  app.use((error, req, res, next) => {
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(router);
+
+app.use((error, req, res, next) => {
     console.log(error);
     switch (error.name) {
         case 'SequelizeValidationError':
@@ -107,6 +111,6 @@ if (process.env.NODE_ENV !== 'production') {
             });
             break;
     }
-  });
+});
 
-  module.exports = app;
+module.exports = app;

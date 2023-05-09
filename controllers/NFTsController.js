@@ -34,6 +34,7 @@ class NFTsController {
                     address,
                     chain,
                     normalizeMetadata: true,
+                    mediaItems: true,
                     limit: 10,
                     disableTotal: false,
                     cursor
@@ -72,8 +73,9 @@ class NFTsController {
                     RoomId: room.id,
                     Artist: artist,
                     NFTs: result.map(nft => {
-                        const { normalized_metadata, token_hash } = nft;
-                        const { name, image, description } = normalized_metadata
+                        const { normalized_metadata, token_hash, media } = nft;
+                        const { name, description } = normalized_metadata
+                        const image = media.media_collection.medium.url
                         return {
                             token: token_hash,
                             title: name,
