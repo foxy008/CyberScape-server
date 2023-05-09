@@ -16,8 +16,8 @@ module.exports = {
           key: 'id'
         }
       },
-      transactionId: {
-        type: Sequelize.INTEGER
+      orderId: {
+        type: Sequelize.STRING
       },
       status: {
         type: Sequelize.STRING

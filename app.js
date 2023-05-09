@@ -93,11 +93,24 @@ app.use((error, req, res, next) => {
                 message: 'Favorite had been created before'
             });
             break;
-        case 'nullQuota':
+
+        case 'NullQuota':
             res.status(400).json({
                 message: 'Your Quota has empty'
             });
             break;
+
+        case 'FailedPayment':
+            res.status(400).json({
+                message: 'Your Payment has been Failed'
+            });
+            break;
+        case 'UserUpdateFailed':
+            res.status(400).json({
+                message: 'Your Update has been Failed'
+            });
+            break;
+
 
         case 'SequelizeForeignKeyConstraintError':
             res.status(400).json({

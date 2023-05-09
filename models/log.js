@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    transactionId: DataTypes.INTEGER,
+    orderId: DataTypes.STRING,
     status:{
       type: DataTypes.STRING,
-      defaultValue : "pending"
+      defaultValue : "Pending"
     }
   }, {
     sequelize,

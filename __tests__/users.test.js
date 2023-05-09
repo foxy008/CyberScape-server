@@ -16,7 +16,7 @@ describe("User Routes Users Test", () => {
             const user = {
                 firstName : 'user',
                 lastName : 'user',
-                email: 'user@mail.com',
+                email: 'ghandurathallah10@gmail.com',
                 password : '12345678'
             }
             const response = await request(app)
@@ -100,7 +100,7 @@ describe("User Routes Users Test", () => {
             const user = {
                 firstName : 'user',
                 lastName : 'user',
-                email: 'user@mail.com',
+                email: 'ghandurathallah10@gmail.com',
                 password: '12345678',
             }
 
@@ -134,7 +134,7 @@ describe("User Routes Users Test", () => {
     describe('POST /users/login - user login', ()=>{
         it("should login user and response 200", async() => {
             const user = {
-                email: 'admin@admin.com',
+                email: 'ghandurathallah10@gmail.com',
                 password : '12345678'
             }
 
@@ -148,7 +148,7 @@ describe("User Routes Users Test", () => {
 
         it("should wrong password and response 401", async() => {
             const user = {
-                email: 'user@mail.com',
+                email: 'ghandurathallah10@gmail.com',
                 password : '123'
             }
 
