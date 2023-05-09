@@ -57,11 +57,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     quota: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 3
     },
     isVerified: {
       type : DataTypes.BOOLEAN,
-      defaultValue : false 
+      defaultValue : false
     },
   }, {
     hooks:{
