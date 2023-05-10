@@ -269,7 +269,7 @@ class usersController {
 
         } catch (error) {
             // console.log(error);
-            next(error)
+            // next(error)
         }
     }
 }

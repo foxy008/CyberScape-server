@@ -8,9 +8,9 @@ const router = express.Router();
 router.post('/register', usersController.register);
 router.post('/login', usersController.login);
 router.get('/', auth, usersController.getProfile);
+router.patch('/', verify, usersController.updateVerified);
 router.patch('/add', auth, author, usersController.addQuota);
 router.patch('/reduce', auth, author, usersController.reduceQuota);
-router.patch('/', verify, usersController.updateVerified);
 router.get('/payment', auth, author, usersController.getToken)
 
 

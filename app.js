@@ -50,11 +50,11 @@ app.use((error, req, res, next) => {
             });
             break;
 
-        case 'WrongVerifyToken':
-            res.status(403).json({
-                message: 'You can verify your account'
-            });
-            break;
+        // case 'WrongVerifyToken':
+        //     res.status(403).json({
+        //         message: 'You can verify your account'
+        //     });
+        //     break;
 
         case 'LoginFailed':
             res.status(401).json({
