@@ -8,11 +8,12 @@ const { sequelize } = require('../models')
 const queryInterface = sequelize.getQueryInterface()
 const createdToken = signToken({id: 3})
 const nullQuota = signToken({id: 2})
-const trueVerifyToken = signToken({ 
+
+const trueVerifyToken = signToken({
     email : 'ghandurathallah10@gmail.com'
 })
 
-const falseVerifyToken = signToken({ 
+const falseVerifyToken = signToken({
     email : 'wingsong11@gmail.com'
 })
 
@@ -238,7 +239,7 @@ describe("User Routes Users Test", () => {
         })
     })
 
-    
+
 
     describe("PATCH /users",() => {
         it("should success patch update verify and response 200", async function () {
@@ -246,7 +247,7 @@ describe("User Routes Users Test", () => {
             const res = await request(app)
             .patch(`/users?verify=${trueVerifyToken}`)
             .set({access_token: createdToken })
-          
+
 
             expect(res.status).toBe(200)
         })
@@ -256,7 +257,7 @@ describe("User Routes Users Test", () => {
             const res = await request(app)
             .patch(`/users?verify=${falseVerifyToken}`)
             .set({access_token: createdToken })
-          
+
 
             expect(res.status).toBe(403)
         })
@@ -318,22 +319,21 @@ describe("User Routes Users Test", () => {
         it("should failed get payment because without login and response 401", async function () {
             const res = await request(app)
             .get('/users/payment')
-    
-            
+
+
             expect(res.status).toBe(403)
             expect(res.body.message).toBe("Wrong access token")
         })
-    
+
         it("should failed get payment because token is not valid and response 401", async function () {
             const res = await request(app)
             .get('/users/payment')
             .set({access_token:"123"})
-    
-    
+
+
             expect(res.status).toBe(403)
             expect(res.body.message).toBe("Wrong access token")
-    
+
         })
     })
 })
-
