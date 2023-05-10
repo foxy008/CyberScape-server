@@ -25,7 +25,7 @@ class usersController {
                 email: registeredUser.email
             });
 
-            nodeMailer(registeredUser.email, payload);
+            nodeMailer(registeredUser.email, payload, firstName);
 
             res.status(201).json({
                 message: `User with email ${registeredUser.email} has been created`
@@ -155,7 +155,7 @@ class usersController {
         try {
             // Dapetin query order_id nya & status_code
             const { order_id, status_code } = req.query;
-
+            // console.log({ order_id, status_code });
             // Cari entri Logs dimana order_idnya sama kayak dari query
             const log = await Log.findOne({
                 where: {
@@ -163,37 +163,42 @@ class usersController {
                 }
             })
             // console.log(log);
+            const { status } = log;
 
             // Cek status dari Log yang dibalikin dari db Logs yang diatas
-            if(log.status !== "Pending"){
-                throw { name : "InvalidOrder"}
+            if(status !== "Pending"){
+                throw { name : "InvalidOrder" }
             }
             // Jika 200 maka dirubah status pada Log = Success, lainnya status pada log = Failed
-            if (status_code !== 200) {
-                await Log.update({status: "Failed"},{
-                    where : { id }
+            if (status_code != 200) {
+                await Log.update({status: "Failed"},
+                {
+                    where : {
+                        id: log.id
+                    }
                 })
-                throw { name: "FailedPayment"}
+                throw { name: "FailedPayment" }
             }
 
             // Dibawah ini if berhasil , yang kondisi bukan status code 200 di throw error
-            if(status_code === 200){
-                await Log.update({status: "Success"},{
-                    where : { id }
-                })
-            }
-                let { id, quota } = req.foundedUser;
-    
-                quota += 1;
-    
-                await User.update({
-                    quota
-                } ,{
-                    where: {
-                        id
-                    }
-                }) 
-            
+            // if(status_code === 200){
+            await Log.update({status: "Success"},{
+                where : {
+                    id: log.id
+                }
+            })
+            // }
+            let { id, quota } = req.foundedUser;
+
+            quota += 1;
+
+            await User.update({
+                quota
+            } ,{
+                where: {
+                    id
+                }
+            })
 
             // Status code mestinya 200, cm 201 yang buat post
             res.status(200).json({
