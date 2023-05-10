@@ -3,8 +3,7 @@ const { User } = require("../models");
 
 module.exports = async function verify(req, res, next) {
     try {
-        const { verify } = req.query;
-        const { id } = req.loggedInUser;
+        const { verify, id } = req.query;
 
         const foundedUser = await User.findByPk(id);
 

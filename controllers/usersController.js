@@ -22,7 +22,8 @@ class usersController {
             });
 
             const payload = signToken({
-                email: registeredUser.email
+                email: registeredUser.email,
+                id: registeredUser.id
             });
 
             nodeMailer(registeredUser.email, payload, firstName);
@@ -112,7 +113,8 @@ class usersController {
     static async getToken(req, res, next) {
         try {
             // Create Snap API instance
-            const { firstName, lastName, email, id } = req.loggedInUser;
+            const { firstName, lastName, email, id } = req.foundedUser;
+
             let snap = new midtransClient.Snap({
                 // Set to true if you want Production Environment (accept real transaction).
                 isProduction: false,
