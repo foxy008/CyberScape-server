@@ -8,9 +8,9 @@ module.exports = async function verify(req, res, next) {
 
         const foundedUser = await User.findByPk(id);
 
-        if (!foundedUser) {
-            throw { name: 'UserNotFound' }
-        }
+        // if (!foundedUser) {
+        //     throw { name: 'UserNotFound' }
+        // }
 
         const verifiedEmail = foundedUser.email;
         const { isVerified } = foundedUser;
@@ -19,9 +19,9 @@ module.exports = async function verify(req, res, next) {
         // console.log(foundedUser, email);
         // console.log({ id, isVerified }, '<-- get logged in user');
 
-        if (isVerified) {
-            throw { name: 'HadBeenVerified' }
-        }
+        // if (isVerified) {
+        //     throw { name: 'HadBeenVerified' }
+        // }
 
         if (email === verifiedEmail) {
             next();

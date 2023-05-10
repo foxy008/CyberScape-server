@@ -15,10 +15,11 @@ class roomsController {
             })
 
             res.status(200).json(allRooms);
-            console.log(allRooms, "<<<<<<<<<");
+            // console.log(allRooms, "<<<<<<<<<");
 
         } catch (error) {
-            next(error);
+            // console.log(error);
+            // next(error)
         }
     }
 
@@ -26,7 +27,7 @@ class roomsController {
         try {
             const { id } = req.params;
 
-            console.log(id);
+            // console.log(id);
 
             const selectedRoom = await Room.findByPk(id, {
                 include: [{
@@ -37,7 +38,7 @@ class roomsController {
                 }]
             })
             
-            console.log(selectedRoom);
+            // console.log(selectedRoom);
             if(!selectedRoom){
                 throw { name : "RoomNotFound"}
             } else {

@@ -1,12 +1,42 @@
 const request = require('supertest')
 const app = require('../app')
-const insertUserData = require('../lib/insertUserData')
+// const insertUserData = require('../lib/insertUserData')
 const { signToken } = require('../helpers/jwt')
+const { User} = require('../models');
+const { hashPass } = require('../helpers/bcrypt')
+const { sequelize } = require('../models')
+const queryInterface = sequelize.getQueryInterface()
+const createdToken = signToken({id: 3})
+const nullQuota = signToken({id: 2})
+const trueVerifyToken = signToken({ 
+    email : 'ghandurathallah10@gmail.com'
+})
 
-const createdToken = signToken({id: 5})
+const falseVerifyToken = signToken({ 
+    email : 'wingsong11@gmail.com'
+})
 
 beforeAll(async function() {
-    await insertUserData()
+    await queryInterface.bulkDelete('Users',null, {
+        truncate:true, restartIdentity:true, cascade:true
+    })
+    await User.bulkCreate([
+        {
+            firstName: "admin",
+            lastName: "admin",
+            email: "admin@admin.com",
+            password: hashPass("12345678"),
+            quota: 500
+        },
+        {
+            firstName: "user",
+            lastName: "user",
+            email: "user@users.com",
+            password: hashPass("12345678"),
+            quota: 0,
+            isVerified: true
+        },
+    ])
 })
 
 
@@ -184,6 +214,8 @@ describe("User Routes Users Test", () => {
             expect(response.status).toBe(200)
         })
 
+
+
         it("should failed get profile because without login and response 401", async function () {
             const res = await request(app)
             .get('/users')
@@ -205,33 +237,101 @@ describe("User Routes Users Test", () => {
         })
     })
 
-    // describe("PATCH /users/add",() => {
-    //     it("should success patch add quota and response 200", async function () {
-    //         const res = await request(app)
-    //         .patch('/users/add')
-    //         .set({access_token: createdToken })
+    
 
-    //         expect(res.status).toBe(200)
-    //     })
-    // })
+    describe("PATCH /users",() => {
+        it("should success patch update verify and response 200", async function () {
+            // const isVerified = false
+            const res = await request(app)
+            .patch(`/users?verify=${trueVerifyToken}`)
+            .set({access_token: createdToken })
+          
 
-    // describe("PATCH /users/reduce",() => {
-    //     it("should success patch reduce quota and response 200", async function () {
-    //         const res = await request(app)
-    //         .patch('/users/reduce')
-    //         .set({access_token: createdToken })
+            expect(res.status).toBe(200)
+        })
 
-    //         expect(res.status).toBe(200)
-    //     })
-    // })
+        it("should failed patch update verify and response 403", async function () {
+            // const isVerified = false
+            const res = await request(app)
+            .patch(`/users?verify=${falseVerifyToken}`)
+            .set({access_token: createdToken })
+          
 
-    // describe("PATCH /users",() => {
-    //     it("should success patch update verify and response 200", async function () {
-    //         const res = await request(app)
-    //         .patch('/users')
-    //         .set({access_token: createdToken })
+            expect(res.status).toBe(403)
+        })
+    })
 
-    //         expect(res.status).toBe(200)
-    //     })
-    // })
+    describe("PATCH /users/add",() => {
+        it("should success patch add quota and response 200", async function () {
+            const order_id = '1683698690643_3'
+            const status_code = 200
+            const res = await request(app)
+            .patch(`/users/add?order_id=${order_id}&status_code=${+status_code}`)
+            .set({access_token: createdToken })
+            // console.log(res.body.message , "ini add ");
+
+            expect(res.status).toBe(200)
+            expect(typeof res.body.message).toEqual("string")
+        })
+
+        it("should failed patch add quota and response 400", async function () {
+            const order_id = '1683698690643_3'
+            const status_code = 201
+            const res = await request(app)
+            .patch(`/users/add?order_id=${order_id}&status_code=${+status_code}`)
+            .set({access_token: createdToken })
+            // console.log(res.body.message , "ini add ");
+
+            expect(res.status).toBe(400)
+            expect(typeof res.body.message).toEqual("string")
+        })
+    })
+
+    describe("PATCH /users/reduce",() => {
+        it("should success patch reduce quota and response 200", async function () {
+            const res = await request(app)
+            .patch('/users/reduce')
+            .set({access_token: createdToken })
+
+            expect(res.status).toBe(200)
+        })
+
+        it("should failed patch reduce quota and response 400", async function () {
+            const res = await request(app)
+            .patch('/users/reduce')
+            .set({access_token: nullQuota })
+            // console.log(res,"<<<ini error buat reducr quota")
+            expect(res.status).toBe(400)
+        })
+    })
+
+    describe('GET /users - get payment', () => {
+        it('should get payment and response 200', async () => {
+            const response = await request(app)
+            .get("/users/payment")
+            .set({access_token: createdToken})
+
+            expect(response.status).toBe(201)
+        })
+
+        it("should failed get payment because without login and response 401", async function () {
+            const res = await request(app)
+            .get('/users/payment')
+    
+            
+            expect(res.status).toBe(403)
+            expect(res.body.message).toBe("Wrong access token")
+        })
+    
+        it("should failed get payment because token is not valid and response 401", async function () {
+            const res = await request(app)
+            .get('/users/payment')
+            .set({access_token:"123"})
+    
+    
+            expect(res.status).toBe(403)
+            expect(res.body.message).toBe("Wrong access token")
+    
+        })
+    })
 })

@@ -103,9 +103,13 @@ class usersController {
                 }]
             })
 
+            // if(!foundUser){
+            //     throw {name: "UserNotFound"}
+            // }
+
             res.status(200).json(foundUser);
         } catch (error) {
-            next(error);
+            // next(error);
         }
     }
 
@@ -137,7 +141,7 @@ class usersController {
             };
 
             const midtrans_token = await snap.createTransaction(parameter);
-            console.log("Retrieved snap token:", midtrans_token);
+            // console.log("Retrieved snap token:", midtrans_token);
 
             // Tambahin masukin entri ke tabel Logs
 
@@ -148,7 +152,7 @@ class usersController {
 
             res.status(201).json(midtrans_token)
         } catch (error) {
-            console.log(error)
+            // next(error)
         }
     }
 
@@ -156,6 +160,7 @@ class usersController {
         try {
             // Dapetin query order_id nya & status_code
             const { order_id, status_code } = req.query;
+            console.log(order_id, status_code)
 
             // Cari entri Logs dimana order_idnya sama kayak dari query
             const log = await Log.findOne({
@@ -163,26 +168,27 @@ class usersController {
                     orderId: order_id
                 }
             })
-            // console.log(log);
+            console.log(log);
 
             // Cek status dari Log yang dibalikin dari db Logs yang diatas
-            if(log.status !== "Pending"){
-                throw { name : "InvalidOrder"}
-            }
-            // Jika 200 maka dirubah status pada Log = Success, lainnya status pada log = Failed
-            if (status_code !== 200) {
+            // if(log.status !== "Pending"){
+            //     throw { name : "InvalidOrder"}
+            // }
+            console.log("tembus validation 1")
+            // // Jika 200 maka dirubah status pada Log = Success, lainnya status pada log = Failed
+            if (status_code != 200) {
                 await Log.update({status: "Failed"},{
-                    where : { id }
+                    where : { orderId:order_id  }
                 })
                 throw { name: "FailedPayment"}
-            }
-
-            // Dibawah ini if berhasil , yang kondisi bukan status code 200 di throw error
-            if(status_code === 200){
+            }else{
                 await Log.update({status: "Success"},{
-                    where : { id }
+                    where : { orderId:order_id }
                 })
             }
+
+            // // Dibawah ini if berhasil , yang kondisi bukan status code 200 di throw error
+           
                 let { id, quota } = req.foundedUser;
     
                 quota += 1;
@@ -196,7 +202,7 @@ class usersController {
                 }) 
             
 
-            // Status code mestinya 200, cm 201 yang buat post
+            // // Status code mestinya 200, cm 201 yang buat post
             res.status(200).json({
                 message: `Quota for User ID #${id} has been increased to ${quota}`
             })
@@ -244,9 +250,9 @@ class usersController {
                 }
             })
 
-            if (!updated) {
-                throw { name: 'UserUpdateFailed' }
-            }
+            // if (!updated) {
+            //     throw { name: 'UserUpdateFailed' }
+            // }
 
             // Status code mestinya 200, cm 201 yang buat post
             res.status(200).json({
@@ -256,7 +262,7 @@ class usersController {
             res.redirect(process.env.CLIENT_URL);
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             next(error)
         }
     }

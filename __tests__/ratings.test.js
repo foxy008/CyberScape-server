@@ -20,11 +20,21 @@ describe("POST /ratings",() => {
         expect(res.status).toBe(201)
     })
 
+    it("should failed add rating and response 400", async function () {
+        const NFTId = 1
+        const res = await request(app)
+        .post(`/ratings/${NFTId}?value=10`)
+
+        .set({access_token:token})
+        expect(res.status).toBe(400)
+    })
+
     it("should failed add rating and response 404", async function () {
         const NFTId = 1000
         const res = await request(app)
         .post(`/ratings/${NFTId}`)
         .set({access_token:token})
+
         expect(res.status).toBe(404)
         expect(res.body.message).toBe("Rating value not found")
     })

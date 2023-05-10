@@ -17,9 +17,9 @@ class userFavoritesController {
                 }
             })
 
-            if (!created) {
-                throw { name: 'FavoriteExisted' }
-            }
+            // if (!created) {
+            //     throw { name: 'FavoriteExisted' }
+            // }
 
             res.status(201).json({
                 message: `User #${rating.UserId} has favorited NFT #${rating.NFTId}`

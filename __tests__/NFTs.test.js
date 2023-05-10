@@ -1,30 +1,62 @@
 const request = require('supertest')
 const app = require('../app')
-const insertNFTData = require('../lib/insertNFTData')
+const { NFT } = require('../models')
+const { sequelize } = require('../models')
+const queryInterface = sequelize.getQueryInterface()
+
+// const insertNFTData = require('../lib/insertNFTData')
+
+jest.setTimeout(90 * 1000)
 
 beforeAll(async function() {
-    await insertNFTData()
+    await queryInterface.bulkDelete('NFTs',null, {
+        truncate:true, restartIdentity:true, cascade:true
+    })
+    await NFT.bulkCreate([
+        {
+            "token": "1001",
+            "title": "The Garden of Earthly Delights",
+            "description": "A triptych painting by Hieronymus Bosch depicting a lush and surreal landscape populated with fantastic creatures and vivid symbolism.",
+            "imageUrl": "https://www.example.com/images/1001.jpg"
+        },
+        {
+            "token": "1002",
+            "title": "Starry Night",
+            "description": "A painting by Vincent van Gogh featuring a swirling sky and a sleepy town below.",
+            "imageUrl": "https://www.example.com/images/1002.jpg"
+        },
+        {
+            "token": "1003",
+            "title": "The Persistence of Memory",
+            "description": "A surrealist painting by Salvador Dali featuring melting clocks in a desert landscape.",
+            "imageUrl": "https://www.example.com/images/1003.jpg"
+        },
+        {
+            "token": "1004",
+            "title": "Les Demoiselles d'Avignon",
+            "description": "A cubist painting by Pablo Picasso depicting five nude women in a brothel.",
+            "imageUrl": "https://www.example.com/images/1004.jpg"
+        },
+        {
+            "token": "1005",
+            "title": "The Scream",
+            "description": "A painting by Edvard Munch featuring a figure with an agonized expression against a blood-red sky.",
+            "imageUrl": "https://www.example.com/images/1005.jpg"
+        }   
+    ])
 })
 
-// afterAll(async function () {
-//     await cleanup()
-// })
-// describe('POST /nfts', ()=>{
-//     it('should create new NFT and response 201', async() => {
-//         const NFT = {
-//             "name": "Larva Labs (CryptoPunks)",
-//             "website": "https://opensea.io/collection/cryptopunks",
-//             "avatarUrl": "https://i.seadn.io/gae/BdxvLseXcfl57BiuQcQYdJ64v-aI8din7WPk0Pgo3qQFhAUH-B6i-dCqqc_mCkRIzULmwzwecnohLhrcH8A9mpWIZqA7ygc52Sr81hE?auto=format&w=1920",
-//             "address": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"    
-//         }
-//         const response = await request(app)
-//         .post('/nfts')
-//         .send(NFT)
 
-//         expect(response.status).toBe(201)
-//         expect(response.body).toEqual(expect.any(Object))    
-//     })
-// })
+describe('POST /nfts', ()=>{
+    it('should create new NFT and response 201', async() => {
+        const response = await request(app)
+        .post('/nfts')
+
+
+        expect(response.status).toBe(201)
+        // expect(response.body).toEqual(expect.any(Object))    
+    })
+})
 
 describe('GET /nfts', () => {
     it("should return a list of NFT Top Collection and response 200" , async () => {

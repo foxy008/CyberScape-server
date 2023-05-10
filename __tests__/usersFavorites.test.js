@@ -1,13 +1,29 @@
 const request = require('supertest')
 const app = require('../app')
-const insertUserFavoriteData = require('../lib/insertUserFavoriteData')
+const { sequelize } = require('../models')
+const queryInterface = sequelize.getQueryInterface()
+const { UserFavorite } = require('../models');
+
+// const insertUserFavoriteData = require('../lib/insertUserFavoriteData')
 
 const { signToken } = require('../helpers/jwt');
 
 
 let token;
 beforeAll(async function (){
-    await insertUserFavoriteData()
+    await queryInterface.bulkDelete('UserFavorites',null, {
+        truncate:true, restartIdentity:true, cascade:true
+    })
+    await UserFavorite.bulkCreate([
+        {
+            "UserId": "1",
+            "NFTId": "1"
+        },
+        {
+            "UserId": "2",
+            "NFTId": "2"
+        }
+    ])
     token = signToken({id : 1 })
 
 })
