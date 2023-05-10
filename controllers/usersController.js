@@ -25,7 +25,7 @@ class usersController {
                 email: registeredUser.email
             });
 
-            nodeMailer(registeredUser.email, payload);
+            nodeMailer(registeredUser.email, payload, firstName);
 
             res.status(201).json({
                 message: `User with email ${registeredUser.email} has been created`
@@ -148,7 +148,7 @@ class usersController {
             await Log.create({
                 UserId : id, orderId : order_id
             })
-            
+
 
             res.status(201).json(midtrans_token)
         } catch (error) {
@@ -162,12 +162,16 @@ class usersController {
             const { order_id, status_code } = req.query;
             console.log(order_id, status_code)
 
+
+            // console.log({ order_id, status_code });
+
             // Cari entri Logs dimana order_idnya sama kayak dari query
             const log = await Log.findOne({
                 where: {
                     orderId: order_id
                 }
             })
+
             console.log(log);
 
             // Cek status dari Log yang dibalikin dari db Logs yang diatas
@@ -259,7 +263,7 @@ class usersController {
                 message : `User with ID #${id} has been verified`
             });
 
-            res.redirect(process.env.CLIENT_URL);
+            // res.redirect(process.env.CLIENT_URL);
 
         } catch (error) {
             // console.log(error);

@@ -9,10 +9,11 @@ class NFTsController {
     static async postNewNFTs(req, res, next) {
         try {
             let response;
+            const allResponse = [];
             for (let i = 0; i < artists.length; i++) {
                 const { address, avatarUrl, name, website } = artists[i];
                 let cursor = null;
-             
+
 
                 // console.log(!cursor);
 
@@ -136,9 +137,10 @@ class NFTsController {
 
                 }
 
+                allResponse.push(response);
             }
 
-            res.status(201).json(response);
+            res.status(201).json(allResponse);
         } catch (error) {
             // console.log(error, "error catch<<<<");
             // next(error);
@@ -147,7 +149,9 @@ class NFTsController {
 
     static async getTopCollection(req, res, next) {
         try {
-            const topNFTs = await NFT.findAll({
+            const { top } = req.query;
+
+            let sequelizeQuery = {
                 include: [{
                     model: RoomNFT,
                     include: [{
@@ -160,8 +164,17 @@ class NFTsController {
                 order: [
                     ['averageRating', 'DESC']
                 ],
-                limit: 10
-            })
+                limit: 9
+            }
+
+            if (top) {
+                sequelizeQuery = {
+                    ...sequelizeQuery,
+                    limit: 4
+                }
+            }
+
+            const topNFTs = await NFT.findAll(sequelizeQuery)
 
             res.status(200).json(topNFTs);
         } catch (error) {

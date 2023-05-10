@@ -16,6 +16,7 @@ const falseVerifyToken = signToken({
     email : 'wingsong11@gmail.com'
 })
 
+
 beforeAll(async function() {
     await queryInterface.bulkDelete('Users',null, {
         truncate:true, restartIdentity:true, cascade:true
@@ -39,7 +40,6 @@ beforeAll(async function() {
     ])
 })
 
-
 describe("User Routes Users Test", () => {
     describe('POST /users/register - create new user', ()=>{
         it('should create register and response 201', async() => {
@@ -47,14 +47,15 @@ describe("User Routes Users Test", () => {
                 firstName : 'user',
                 lastName : 'user',
                 email: 'ghandurathallah10@gmail.com',
-                password : '12345678'
+                password : '12345678',
+                isVerified: true
             }
             const response = await request(app)
             .post('/users/register')
             .send(user)
 
             expect(response.status).toBe(201)
-            expect(response.body).toEqual(expect.any(Object))    
+            expect(response.body).toEqual(expect.any(Object))
         })
 
         it("should email empty and response 400", async() => {
@@ -219,21 +220,21 @@ describe("User Routes Users Test", () => {
         it("should failed get profile because without login and response 401", async function () {
             const res = await request(app)
             .get('/users')
-    
-            
+
+
             expect(res.status).toBe(403)
             expect(res.body.message).toBe("Wrong access token")
         })
-    
+
         it("should failed get profile because token is not valid and response 401", async function () {
             const res = await request(app)
             .get('/users')
             .set({access_token:"123"})
-    
-    
+
+
             expect(res.status).toBe(403)
             expect(res.body.message).toBe("Wrong access token")
-    
+
         })
     })
 
@@ -335,3 +336,4 @@ describe("User Routes Users Test", () => {
         })
     })
 })
+
