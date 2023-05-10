@@ -5,7 +5,7 @@
         "email": "johnsmith@example.com",
         "password": "mysecretpassword",
         "quota": 500
-    },
+    }, 
     {
         "firstName": "jane.doe",
         "lastName": "johnsmith",

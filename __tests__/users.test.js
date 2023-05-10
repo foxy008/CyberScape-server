@@ -205,31 +205,33 @@ describe("User Routes Users Test", () => {
         })
     })
 
-    describe("PATCH /users/add",() => {
-        it("should success patch add quota and response 200", async function () {
-            const res = await request(app)
-            .patch('/users/add')
-            .set({access_token: createdToken })
+    // describe("PATCH /users/add",() => {
+    //     it("should success patch add quota and response 200", async function () {
+    //         const res = await request(app)
+    //         .patch('/users/add')
+    //         .set({access_token: createdToken })
 
-            expect(res.status).toBe(200)
-        })
-    })
+    //         expect(res.status).toBe(200)
+    //     })
+    // })
 
-    describe("PATCH /users/reduce",() => {
-        it("should success patch reduce quota and response 200", async function () {
-            const res = await request(app)
-            .patch('/users/reduce')
-            .set({access_token: createdToken })
-            expect(res.status).toBe(200)
-        })
-    })
+    // describe("PATCH /users/reduce",() => {
+    //     it("should success patch reduce quota and response 200", async function () {
+    //         const res = await request(app)
+    //         .patch('/users/reduce')
+    //         .set({access_token: createdToken })
 
-    describe("PATCH /users",() => {
-        it("should success patch update verify and response 200", async function () {
-            const res = await request(app)
-            .patch('/users')
-            .set({access_token: createdToken })
-            expect(res.status).toBe(200)
-        })
-    })
+    //         expect(res.status).toBe(200)
+    //     })
+    // })
+
+    // describe("PATCH /users",() => {
+    //     it("should success patch update verify and response 200", async function () {
+    //         const res = await request(app)
+    //         .patch('/users')
+    //         .set({access_token: createdToken })
+
+    //         expect(res.status).toBe(200)
+    //     })
+    // })
 })

@@ -34,6 +34,28 @@ describe("POST /favorites",() => {
         expect(res.status).toBe(400)
         expect(res.body.message).toBe("Favorite had been created before")
     })
+
+    it("should failed add rating because without login and response 401", async function () {
+        const NFTId = 1
+        const res = await request(app)
+        .post(`/favorites/${NFTId}`)
+
+        
+        expect(res.status).toBe(403)
+        expect(res.body.message).toBe("Wrong access token")
+    })
+
+    it("should failed add rating because token is not valid and response 401", async function () {
+        const NFTId = 1
+        const res = await request(app)
+        .get(`/favorites/${NFTId}`)
+        .set({access_token:"123"})
+
+
+        expect(res.status).toBe(403)
+        expect(res.body.message).toBe("Wrong access token")
+
+    })
 })
 
 describe("DELETE /favorites",() => {
@@ -56,5 +78,27 @@ describe("DELETE /favorites",() => {
 
         expect(res.status).toBe(404)
         expect(res.body.message).toBe("Favorite ID not found")
+    })
+
+    it("should failed add rating because without login and response 401", async function () {
+        const NFTId = 1
+        const res = await request(app)
+        .post(`/favorites/${NFTId}`)
+
+        
+        expect(res.status).toBe(403)
+        expect(res.body.message).toBe("Wrong access token")
+    })
+
+    it("should failed add rating because token is not valid and response 401", async function () {
+        const NFTId = 1
+        const res = await request(app)
+        .get(`/favorites/${NFTId}`)
+        .set({access_token:"123"})
+
+
+        expect(res.status).toBe(403)
+        expect(res.body.message).toBe("Wrong access token")
+
     })
 })

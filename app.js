@@ -18,8 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(router);
 
+
 app.use((error, req, res, next) => {
-    console.log(error);
+      console.log(error, "<<<<<<<<<<<<");
     switch (error.name) {
         case 'SequelizeValidationError':
             message = error.errors[0].message;
