@@ -14,6 +14,6 @@ module.exports = async function author(req, res, next) {
         //     throw { name: 'UserNotAvailable'}
         // }
     } catch (error) {
-        next(error)
+        // next(error)
     }
 }

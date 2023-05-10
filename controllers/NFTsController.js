@@ -3,7 +3,7 @@ const { EvmChain } = require("@moralisweb3/common-evm-utils");
 const { Room, RoomNFT, NFT, Artist } = require('../models');
 const { positions } = require("../data/position");
 const artists = require("../data/artists");
-// Ganti diatas kalo mau posisi ubah
+
 
 class NFTsController {
     static async postNewNFTs(req, res, next) {
