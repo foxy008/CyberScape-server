@@ -70,10 +70,8 @@ class ratingsController {
                     UserId: id
                 }
             })
+            // console.log(updated,"updated")
 
-            if (!updated) {
-                throw { name: 'RatingNotFound' }
-            }
 
             const ratedNFT = await NFT.findByPk(NFTId);
             let { averageRating, ratingLength } = ratedNFT;

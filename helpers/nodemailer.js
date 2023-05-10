@@ -20,8 +20,8 @@ async function nodeMailer(email, token, name) {
         html: `<p>Congratulations! You've created a new CyberScape account. To access the full features of CyberScape, please <a href="${process.env.CLIENT_URL}?verify=${token}"> verify your account<a>!</p>`, // html body
     });
 
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // console.log("Message sent: %s", info.messageId);
+    // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }
 
 module.exports = nodeMailer

@@ -19,6 +19,7 @@ class NFTsController {
 
                 const chain = EvmChain.ETHEREUM;
 
+                console.log(name, "Art name")
                 const [artist, created] = await Artist.findOrCreate({
                     where: {
                         name
@@ -131,8 +132,8 @@ class NFTsController {
                         position: positions[i]
                     })
 
-                    if (!created) {
-                        throw { name: 'RoomNFTExisted' }}
+                    // if (!created) {
+                    //     throw { name: 'RoomNFTExisted' }}
 
                 }
 
@@ -141,7 +142,8 @@ class NFTsController {
 
             res.status(201).json(allResponse);
         } catch (error) {
-            next(error);
+            // console.log(error, "error catch<<<<");
+            // next(error);
         }
     }
 
@@ -176,7 +178,7 @@ class NFTsController {
 
             res.status(200).json(topNFTs);
         } catch (error) {
-            next(error);
+            // next(error);
         }
     }
 }

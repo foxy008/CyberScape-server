@@ -33,11 +33,11 @@ app.use((error, req, res, next) => {
         case 'SequelizeUniqueConstraintError':
             message = error.errors[0].message;
 
-            switch (message) {
-                case "email must be unique":
-                    message = "Email had been registered before."
-                    break;
-            }
+            // switch (message) {
+            //     case "email must be unique":
+            //         message = "Email had been registered before."
+            //         break;
+            // }
 
             res.status(400).json({
                 message
@@ -50,21 +50,15 @@ app.use((error, req, res, next) => {
             });
             break;
 
-        case 'AuthorFailed':
+        case 'WrongVerifyToken':
             res.status(403).json({
-                message: 'You can only modify/edit your own added movie'
+                message: 'You can verify your account'
             });
             break;
 
         case 'LoginFailed':
             res.status(401).json({
                 message: 'Wrong email/password'
-            });
-            break;
-
-        case 'ForbiddenLogin':
-            res.status(403).json({
-                message: 'You must be an admin'
             });
             break;
 
@@ -84,12 +78,24 @@ app.use((error, req, res, next) => {
                 message: 'Favorite ID not found'
             });
             break;
+        // case 'UserNotAvailable':
+        //      res.status(404).json({
+        //         message: 'User not found'
+        //     });
+        //     break;
 
-        case 'FavoriteExisted':
+        case 'RatingExisted':
             res.status(400).json({
-                message: 'Favorite had been created before'
+                message: 'Rating has been created before'
             });
             break;
+
+        // case 'RatingNotFound':
+        //     res.status(400).json({
+        //            message: 'Value is require'
+        //     });
+        //     break;
+        
 
         case 'NullQuota':
             res.status(400).json({
@@ -102,11 +108,11 @@ app.use((error, req, res, next) => {
                 message: 'Your Payment has been Failed'
             });
             break;
-        case 'UserUpdateFailed':
-            res.status(400).json({
-                message: 'Your Update has been Failed'
-            });
-            break;
+        // case 'UserUpdateFailed':
+        //     res.status(400).json({
+        //         message: 'Your Update has been Failed'
+        //     });
+        //     break;
 
 
         case 'SequelizeForeignKeyConstraintError':
@@ -119,7 +125,7 @@ app.use((error, req, res, next) => {
             res.status(500).json({
                 message: 'Internal server error'
             });
-            break;
+            // break;
     }
 });
 
