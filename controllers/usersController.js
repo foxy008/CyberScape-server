@@ -144,7 +144,7 @@ class usersController {
             await Log.create({
                 UserId : id, orderId : order_id
             })
-            
+
 
             res.status(201).json(midtrans_token)
         } catch (error) {
@@ -258,7 +258,7 @@ class usersController {
                 message : `User with ID #${id} has been verified`
             });
 
-            res.redirect(process.env.CLIENT_URL);
+            // res.redirect(process.env.CLIENT_URL);
 
         } catch (error) {
             console.log(error);

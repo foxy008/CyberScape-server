@@ -9,6 +9,7 @@ class NFTsController {
     static async postNewNFTs(req, res, next) {
         try {
             let response;
+            const allResponse = [];
             for (let i = 0; i < artists.length; i++) {
                 const { address, avatarUrl, name, website } = artists[i];
                 let cursor = null;
@@ -135,9 +136,10 @@ class NFTsController {
 
                 }
 
+                allResponse.push(response);
             }
 
-            res.status(201).json(response);
+            res.status(201).json(allResponse);
         } catch (error) {
             next(error);
         }

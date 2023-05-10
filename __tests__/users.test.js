@@ -3,12 +3,19 @@ const app = require('../app')
 const insertUserData = require('../lib/insertUserData')
 const { signToken } = require('../helpers/jwt')
 
-const createdToken = signToken({id: 5})
+const createdToken = signToken({id: 5});
+
+const trueVerifyToken = signToken({
+    email: 'ghandurathallah10@gmail.com'
+});
+
+const falseVerifyToken = signToken({
+    email: 'ariganteng@gmail.com'
+});
 
 beforeAll(async function() {
     await insertUserData()
 })
-
 
 describe("User Routes Users Test", () => {
     describe('POST /users/register - create new user', ()=>{
@@ -17,14 +24,15 @@ describe("User Routes Users Test", () => {
                 firstName : 'user',
                 lastName : 'user',
                 email: 'ghandurathallah10@gmail.com',
-                password : '12345678'
+                password : '12345678',
+                isVerified: true
             }
             const response = await request(app)
             .post('/users/register')
             .send(user)
 
             expect(response.status).toBe(201)
-            expect(response.body).toEqual(expect.any(Object))    
+            expect(response.body).toEqual(expect.any(Object))
         })
 
         it("should email empty and response 400", async() => {
@@ -187,21 +195,21 @@ describe("User Routes Users Test", () => {
         it("should failed get profile because without login and response 401", async function () {
             const res = await request(app)
             .get('/users')
-    
-            
+
+
             expect(res.status).toBe(403)
             expect(res.body.message).toBe("Wrong access token")
         })
-    
+
         it("should failed get profile because token is not valid and response 401", async function () {
             const res = await request(app)
             .get('/users')
             .set({access_token:"123"})
-    
-    
+
+
             expect(res.status).toBe(403)
             expect(res.body.message).toBe("Wrong access token")
-    
+
         })
     })
 
@@ -228,10 +236,15 @@ describe("User Routes Users Test", () => {
     // describe("PATCH /users",() => {
     //     it("should success patch update verify and response 200", async function () {
     //         const res = await request(app)
-    //         .patch('/users')
+    //         .patch('/users?verify=${trueVerifyToken}')
     //         .set({access_token: createdToken })
 
     //         expect(res.status).toBe(200)
     //     })
+
+            // Bikin 3 kondisi:
+            // - 1. Yang salah biar dapet error 'HasBeenVerified'
+            // - 2. Yang bener biar dapet message verification
+            // - 3. Yang bener biar dapet error 'UserUpdateFailed'
     // })
 })
