@@ -3,7 +3,9 @@ const { Room, NFT, RoomNFT, Artist } = require("../models");
 class roomsController {
     static async getAllRooms(req, res, next) {
         try {
-            const allRooms = await Room.findAll({
+            const { recent } = req.query;
+
+            let sequelizeQuery = {
                 include: [{
                     model: RoomNFT,
                     include: [{
@@ -11,8 +13,23 @@ class roomsController {
                     }]
                 }, {
                     model: Artist
-                }]
-            })
+                }],
+                order: [
+                    ['updatedAt', 'ASC']
+                ]
+            }
+
+            if (recent) {
+                sequelizeQuery = {
+                    ...sequelizeQuery,
+                    limit: 4,
+                    order: [
+                        ['updatedAt', 'DESC']
+                    ]
+                }
+            }
+
+            const allRooms = await Room.findAll(sequelizeQuery)
 
             res.status(200).json(allRooms);
             console.log(allRooms, "<<<<<<<<<");
@@ -34,17 +51,20 @@ class roomsController {
                     include: [{
                         model: NFT
                     }]
+                }, {
+                    model: Artist
                 }]
+
             })
-            
+
             console.log(selectedRoom);
             if(!selectedRoom){
                 throw { name : "RoomNotFound"}
             } else {
                 res.status(200).json(selectedRoom);
             }
-            
-            
+
+
         } catch (error) {
             next(error);
         }
