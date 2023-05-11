@@ -64,7 +64,7 @@ app.use((error, req, res, next) => {
 
         case 'RoomExisted':
             res.status(400).json({
-                message: 'Room had been created before'
+                message: 'Room has been created before'
             })
             break;
 

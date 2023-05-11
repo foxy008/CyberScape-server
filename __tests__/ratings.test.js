@@ -46,7 +46,7 @@ describe("POST /ratings",() => {
     
             
             expect(res.status).toBe(403)
-            expect(res.body.message).toBe("Wrong access token")
+            expect(res.body.message).toBe("Your verification link is not valid!")
         })
     
         it("should failed add rating because token is not valid and response 401", async function () {
@@ -57,7 +57,7 @@ describe("POST /ratings",() => {
     
     
             expect(res.status).toBe(403)
-            expect(res.body.message).toBe("Wrong access token")
+            expect(res.body.message).toBe("Your verification link is not valid!")
     
         })
 })
@@ -78,7 +78,7 @@ describe("PATCH /ratings",() => {
     
             
             expect(res.status).toBe(403)
-            expect(res.body.message).toBe("Wrong access token")
+            expect(res.body.message).toBe("Your verification link is not valid!")
         })
     
         it("should failed patch rating because token is not valid and response 401", async function () {
@@ -89,7 +89,7 @@ describe("PATCH /ratings",() => {
     
     
             expect(res.status).toBe(403)
-            expect(res.body.message).toBe("Wrong access token")
+            expect(res.body.message).toBe("Your verification link is not valid!")
     
         })
 })
