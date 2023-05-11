@@ -8,12 +8,11 @@ module.exports = async function author(req, res, next) {
         req.foundedUser = foundedUser;
 
         if (isVerified) {
-            next() 
-        } 
-        // else {
-        //     throw { name: 'UserNotAvailable'}
-        // }
+            next()
+        } else {
+            throw { name: 'UserNotAvailable'}
+        }
     } catch (error) {
-        // next(error)
+        next(error)
     }
 }

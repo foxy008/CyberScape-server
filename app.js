@@ -78,6 +78,7 @@ app.use((error, req, res, next) => {
                 message: 'Favorite ID not found'
             });
             break;
+
         // case 'UserNotAvailable':
         //      res.status(404).json({
         //         message: 'User not found'
@@ -95,7 +96,7 @@ app.use((error, req, res, next) => {
         //            message: 'Value is require'
         //     });
         //     break;
-        
+
 
         case 'NullQuota':
             res.status(400).json({
@@ -108,6 +109,7 @@ app.use((error, req, res, next) => {
                 message: 'Your Payment has been Failed'
             });
             break;
+
         // case 'UserUpdateFailed':
         //     res.status(400).json({
         //         message: 'Your Update has been Failed'
@@ -125,7 +127,7 @@ app.use((error, req, res, next) => {
             res.status(500).json({
                 message: 'Internal server error'
             });
-            // break;
+            break;
     }
 });
 
