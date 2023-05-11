@@ -46,15 +46,9 @@ app.use((error, req, res, next) => {
 
         case 'JsonWebTokenError':
             res.status(403).json({
-                message: 'Wrong access token'
+                message: 'Your verification link is not valid!'
             });
             break;
-
-        // case 'WrongVerifyToken':
-        //     res.status(403).json({
-        //         message: 'You can verify your account'
-        //     });
-        //     break;
 
         case 'LoginFailed':
             res.status(401).json({
@@ -67,6 +61,13 @@ app.use((error, req, res, next) => {
                 message: 'Room ID not found'
             });
             break;
+
+        case 'RoomExisted':
+            res.status(400).json({
+                message: 'Room had been created before'
+            })
+            break;
+
         case 'RatingIsEmpty':
             res.status(404).json({
                 message: 'Rating value not found'
@@ -79,11 +80,29 @@ app.use((error, req, res, next) => {
             });
             break;
 
-        // case 'UserNotAvailable':
-        //      res.status(404).json({
-        //         message: 'User not found'
-        //     });
-        //     break;
+        case 'NFTExisted':
+            res.status(400).json({
+                message: 'NFT had been created before'
+            })
+            break;
+
+        case 'UserNotAvailable':
+             res.status(403).json({
+                message: 'You need to be verified first!'
+            });
+            break;
+
+        case 'HadBeenVerified':
+            res.status(403).json({
+                message: 'Your account had already been verify before!'
+            });
+            break;
+
+        case 'WrongVerifyToken':
+            res.status(403).json({
+                message: 'Your verification link is not valid!'
+            });
+            break;
 
         case 'RatingExisted':
             res.status(400).json({
@@ -110,12 +129,29 @@ app.use((error, req, res, next) => {
             });
             break;
 
-        // case 'UserUpdateFailed':
-        //     res.status(400).json({
-        //         message: 'Your Update has been Failed'
-        //     });
-        //     break;
+        case 'UserUpdateFailed':
+            res.status(500).json({
+                message: 'User failed to update'
+            });
+            break;
 
+        case 'NullQuota':
+            res.status(406).json({
+                message: "User's quota is less than 1"
+            });
+            break;
+
+        case 'FavoriteExisted':
+            res.status(400).json({
+                message: 'Favorite had been created before'
+            })
+            break;
+
+        case 'FavoriteNotFound':
+            res.status(404).json({
+                message: 'Favorite not found'
+            })
+            break;
 
         case 'SequelizeForeignKeyConstraintError':
             res.status(400).json({
