@@ -131,6 +131,75 @@ describe("User Routes Users Test", () => {
             expect(response.body.message).toBe("Password is required")
         })
 
+        it("should firstname empty and response 400", async() => {
+            const user = {
+                firstName : null,
+                lastName : 'user',
+                email: 'user@mail.com',
+                password: '12345',
+            }
+
+            const response = await request(app)
+            .post('/users/register')
+            .send(user)
+
+            expect(response.status).toBe(400)
+            expect(response.body).toEqual(expect.any(Object))
+            expect(response.body.message).toBe("Firstname is required")
+        })
+
+        it("should lastname empty and response 400", async() => {
+            const user = {
+                firstName : 'user',
+                lastName : null,
+                email: 'user@mail.com',
+                password: '12345678',
+            }
+
+            const response = await request(app)
+            .post('/users/register')
+            .send(user)
+
+            console.log(response , "ini response");
+            expect(response.status).toBe(400)
+            expect(response.body).toEqual(expect.any(Object))
+            expect(response.body.message).toBe("Lastname is required")
+        })
+
+        it("should firstname empty string and response 400", async() => {
+            const user = {
+                firstName : '',
+                lastName : 'user',
+                email: 'user@mail.com',
+                password: '12345678',
+            }
+
+            const response = await request(app)
+            .post('/users/register')
+            .send(user)
+
+            expect(response.status).toBe(400)
+            expect(response.body).toEqual(expect.any(Object))
+            expect(response.body.message).toBe("Firstname is required")
+        })
+
+        it("should lastname empty string and response 400", async() => {
+            const user = {
+                firstName : 'user',
+                lastName : '',
+                email: 'user@mail.com',
+                password: '12345678',
+            }
+
+            const response = await request(app)
+            .post('/users/register')
+            .send(user)
+
+            expect(response.status).toBe(400)
+            expect(response.body).toEqual(expect.any(Object))
+            expect(response.body.message).toBe("Lastname is required")
+        })
+
         it("should email already and response 400", async() => {
             const user = {
                 firstName : 'user',

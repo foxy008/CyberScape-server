@@ -10,10 +10,10 @@ module.exports = async function author(req, res, next) {
         if (isVerified) {
             next() 
         } 
-        // else {
-        //     throw { name: 'UserNotAvailable'}
-        // }
+        else {
+            throw { name: 'UserNotAvailable'}
+        }
     } catch (error) {
-        // next(error)
+        next(error)
     }
 }
