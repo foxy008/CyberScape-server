@@ -111,7 +111,7 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.message).toBe("Email is required")
+            expect(response.body.message).toBe("Please enter your email")
         })
 
         it("should password empty string and response 400", async() => {
@@ -128,7 +128,7 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.message).toBe("Password is required")
+            expect(response.body.message).toBe("Please enter your password")
         })
 
         it("should firstname empty and response 400", async() => {
@@ -180,7 +180,7 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.message).toBe("Firstname is required")
+            expect(response.body.message).toBe("Please enter your first name")
         })
 
         it("should lastname empty string and response 400", async() => {
@@ -197,7 +197,7 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.message).toBe("Lastname is required")
+            expect(response.body.message).toBe("Please enter your last name")
         })
 
         it("should email already and response 400", async() => {
@@ -214,7 +214,7 @@ describe("User Routes Users Test", () => {
 
             expect(response.status).toBe(400)
             expect(response.body).toEqual(expect.any(Object))
-            expect(response.body.message).toBe("Email already used")
+            expect(response.body.message).toBe("Email had been registered before")
         })
 
         it("should Invalid email format and response 400", async() => {
@@ -296,7 +296,7 @@ describe("User Routes Users Test", () => {
 
 
             expect(res.status).toBe(403)
-            expect(res.body.message).toBe("Wrong access token")
+            expect(res.body.message).toBe("Your verification link is not valid!")
         })
 
         it("should failed get profile because token is not valid and response 401", async function () {
@@ -306,7 +306,7 @@ describe("User Routes Users Test", () => {
 
 
             expect(res.status).toBe(403)
-            expect(res.body.message).toBe("Wrong access token")
+            expect(res.body.message).toBe("Your verification link is not valid!")
 
         })
     })
@@ -393,7 +393,7 @@ describe("User Routes Users Test", () => {
 
 
             expect(res.status).toBe(403)
-            expect(res.body.message).toBe("Wrong access token")
+            expect(res.body.message).toBe("Your verification link is not valid!")
         })
 
         it("should failed get payment because token is not valid and response 401", async function () {
@@ -403,7 +403,7 @@ describe("User Routes Users Test", () => {
 
 
             expect(res.status).toBe(403)
-            expect(res.body.message).toBe("Wrong access token")
+            expect(res.body.message).toBe("Your verification link is not valid!")
 
         })
     })
