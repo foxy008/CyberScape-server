@@ -182,17 +182,20 @@ class usersController {
                 })
             }
 
+
                 let { id, quota } = req.foundedUser;
-    
+
                 quota += 1;
-    
+
                 await User.update({
                     quota
                 } ,{
                     where: {
                         id
                     }
+
                 }) 
+
 
             res.status(200).json({
                 message: `Quota for User ID #${id} has been increased to ${quota}`
@@ -231,7 +234,7 @@ class usersController {
 
     static async updateVerified ( req , res , next) {
         try {
-            const { id } = req.foundedUser;
+            const { id, email } = req.foundedUser;
 
             const updated = await User.update({
                 isVerified: true
@@ -247,7 +250,7 @@ class usersController {
 
             // Status code mestinya 200, cm 201 yang buat post
             res.status(200).json({
-                message : `User with ID #${id} has been verified`
+                message : `User with email ${email} has been verified`
             });
 
             // res.redirect(process.env.CLIENT_URL);
