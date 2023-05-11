@@ -12,6 +12,7 @@ class newsController {
         q: "NFT",
         from: formattedDate,
         sortBy: "popularity",
+        language: "en",
         pageSize: 100,
       });
 
