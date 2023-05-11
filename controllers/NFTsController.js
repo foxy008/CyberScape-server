@@ -31,7 +31,7 @@ class NFTsController {
                     }
                 });
 
-                // if (!created) throw { name: 'RoomExisted' }
+                if (!created) throw { name: 'RoomExisted' }
 
                 const ArtistId = artist.id
 
@@ -74,7 +74,7 @@ class NFTsController {
                     });
 
                     if (!created) continue
-                    //  throw { name: 'RoomExisted' }
+                     throw { name: 'RoomExisted' }
 
                     response = {
                         RoomId: room.id,
@@ -122,7 +122,7 @@ class NFTsController {
                     })
 
                     if (!created) continue
-                    // throw { name: 'NFTExisted' }
+                    throw { name: 'NFTExisted' }
 
                     nft.id = newNFT.id;
 
@@ -132,8 +132,8 @@ class NFTsController {
                         position: positions[i]
                     })
 
-                    // if (!created) {
-                    //     throw { name: 'RoomNFTExisted' }}
+                    if (!created) {
+                        throw { name: 'RoomNFTExisted' }}
 
                 }
 
@@ -143,7 +143,7 @@ class NFTsController {
             res.status(201).json(allResponse);
         } catch (error) {
             // console.log(error, "error catch<<<<");
-            // next(error);
+            next(error);
         }
     }
 
@@ -178,7 +178,7 @@ class NFTsController {
 
             res.status(200).json(topNFTs);
         } catch (error) {
-            // next(error);
+            next(error);
         }
     }
 }
