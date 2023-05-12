@@ -73,8 +73,7 @@ class NFTsController {
                         }
                     });
 
-                    if (!created) continue
-                     throw { name: 'RoomExisted' }
+                    if (!created) throw { name: 'RoomExisted' }
 
                     response = {
                         RoomId: room.id,
@@ -121,8 +120,7 @@ class NFTsController {
                         }
                     })
 
-                    if (!created) continue
-                    throw { name: 'NFTExisted' }
+                    if (!created) throw { name: 'NFTExisted' }
 
                     nft.id = newNFT.id;
 
