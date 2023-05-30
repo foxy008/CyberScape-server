@@ -4,24 +4,20 @@
   "description": "CyberScape Server",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --coverage --runInBand" ,
-    "start": "node server.js",
-    "reset": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate &&  npx sequelize db:seed:all",
-    "resetnoseed": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
-    "resetenv": "npx sequelize db:migrate:undo:all --env test && npx sequelize db:migrate --env test && npx sequelize db:seed:all --env test",
-    "migenv": "npx sequelize db:migrate --env test"
+    "predev": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "dev": "npx nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/satrioprbw/CyberScape-server.git"
+    "url": "git+https://github.com/foxy008/CyberScape-server.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/satrioprbw/CyberScape-server/issues"
+    "url": "https://github.com/foxy008/CyberScape-server/issues"
   },
-  "homepage": "https://github.com/satrioprbw/CyberScape-server#readme",
+  "homepage": "https://github.com/foxy008/CyberScape-server#readme",
   "dependencies": {
     "@moralisweb3/common-evm-utils": "^2.19.0",
     "bcryptjs": "^2.4.3",

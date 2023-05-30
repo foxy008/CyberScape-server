@@ -1,5 +1,5 @@
 const NewsAPI = require("newsapi");
-const newsapi = new NewsAPI("1a2817d3ac9440e699f7901b5a400774");
+const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
 
 class newsController {
   static async getNFTNews(req, res, next) {

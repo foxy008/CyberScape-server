@@ -1,16 +1,15 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
 }
 
-const cors = require('cors');
-const express = require('express');
-const router = require('./routes');
+const cors = require("cors");
+const express = require("express");
+const router = require("./routes");
 const app = express();
 const Moralis = require("moralis").default;
 
 Moralis.start({
     apiKey: process.env.MORALIS_API_KEY,
-    // ...and any other configuration
 });
 
 app.use(cors());
@@ -18,150 +17,137 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(router);
 
+app.get("/", (_, res) => res.send("hello world"));
 
-app.use((error, req, res, next) => {
-      console.log(error, "<<<<<<<<<<<<");
+app.use((error, _, res, __) => {
     switch (error.name) {
-        case 'SequelizeValidationError':
+        case "SequelizeValidationError":
             message = error.errors[0].message;
 
             res.status(400).json({
-                message
+                message,
             });
             break;
 
-        case 'SequelizeUniqueConstraintError':
+        case "SequelizeUniqueConstraintError":
             message = error.errors[0].message;
 
-            // switch (message) {
-            //     case "email must be unique":
-            //         message = "Email had been registered before."
-            //         break;
-            // }
-
             res.status(400).json({
-                message
+                message,
             });
             break;
 
-        case 'JsonWebTokenError':
+        case "JsonWebTokenError":
             res.status(403).json({
-                message: 'Your verification link is not valid!'
+                message: "Your verification link is not valid!",
             });
             break;
 
-        case 'LoginFailed':
+        case "LoginFailed":
             res.status(401).json({
-                message: 'Wrong email/password'
+                message: "Wrong email/password",
             });
             break;
 
-        case 'RoomNotFound':
+        case "RoomNotFound":
             res.status(404).json({
-                message: 'Room ID not found'
+                message: "Room ID not found",
             });
             break;
 
-        case 'RoomExisted':
+        case "RoomExisted":
             res.status(400).json({
-                message: 'Room has been created before'
-            })
-            break;
-
-        case 'RatingIsEmpty':
-            res.status(404).json({
-                message: 'Rating value not found'
+                message: "Room has been created before",
             });
             break;
 
-        case 'FavoriteNotFound':
+        case "RatingIsEmpty":
             res.status(404).json({
-                message: 'Favorite ID not found'
+                message: "Rating value not found",
             });
             break;
 
-        case 'NFTExisted':
+        case "FavoriteNotFound":
+            res.status(404).json({
+                message: "Favorite ID not found",
+            });
+            break;
+
+        case "NFTExisted":
             res.status(400).json({
-                message: 'NFT had been created before'
-            })
-            break;
-
-        case 'UserNotAvailable':
-             res.status(403).json({
-                message: 'You need to be verified first!'
+                message: "NFT had been created before",
             });
             break;
 
-        case 'HadBeenVerified':
+        case "UserNotAvailable":
             res.status(403).json({
-                message: 'Your account had already been verify before!'
+                message: "You need to be verified first!",
             });
             break;
 
-        case 'WrongVerifyToken':
+        case "HadBeenVerified":
             res.status(403).json({
-                message: 'Your verification link is not valid!'
+                message: "Your account had already been verify before!",
             });
             break;
 
-        case 'RatingExisted':
+        case "WrongVerifyToken":
+            res.status(403).json({
+                message: "Your verification link is not valid!",
+            });
+            break;
+
+        case "RatingExisted":
             res.status(400).json({
-                message: 'Rating has been created before'
+                message: "Rating has been created before",
             });
             break;
 
-        // case 'RatingNotFound':
-        //     res.status(400).json({
-        //            message: 'Value is require'
-        //     });
-        //     break;
-
-
-        case 'NullQuota':
+        case "NullQuota":
             res.status(400).json({
-                message: 'Your Quota has empty'
+                message: "Your Quota has empty",
             });
             break;
 
-        case 'FailedPayment':
+        case "FailedPayment":
             res.status(400).json({
-                message: 'Your Payment has been Failed'
+                message: "Your Payment has been Failed",
             });
             break;
 
-        case 'UserUpdateFailed':
+        case "UserUpdateFailed":
             res.status(500).json({
-                message: 'User failed to update'
+                message: "User failed to update",
             });
             break;
 
-        case 'NullQuota':
+        case "NullQuota":
             res.status(406).json({
-                message: "User's quota is less than 1"
+                message: "User's quota is less than 1",
             });
             break;
 
-        case 'FavoriteExisted':
+        case "FavoriteExisted":
             res.status(400).json({
-                message: 'Favorite had been created before'
-            })
+                message: "Favorite had been created before",
+            });
             break;
 
-        case 'FavoriteNotFound':
+        case "FavoriteNotFound":
             res.status(404).json({
-                message: 'Favorite not found'
-            })
+                message: "Favorite not found",
+            });
             break;
 
-        case 'SequelizeForeignKeyConstraintError':
+        case "SequelizeForeignKeyConstraintError":
             res.status(400).json({
-                message: 'Favorite had been created before'
-            })
+                message: "Favorite had been created before",
+            });
             break;
 
         default:
             res.status(500).json({
-                message: 'Internal server error'
+                message: "Internal server error",
             });
             break;
     }

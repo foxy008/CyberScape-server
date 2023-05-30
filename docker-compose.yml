@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  server:
+    container_name: cyberscape-server
+    build: .
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/app
+    networks:
+      - cyberscape_network
+    depends_on:
+      - pg_cyberspace
+
+  pg_cyberspace:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "3432:5432"
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    networks:
+      - cyberscape_network
+
+volumes:
+  postgresdata:
+    driver: local
+
+networks:
+  cyberscape_network:
+    name: cyberscape_network
