@@ -7,13 +7,13 @@ async function nodeMailer(email, token, name) {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'ashlihsyahrulg@gmail.com', // generated ethereal user
-            pass: 'hpfjeikynphfrgle', // generated ethereal password
+            user: process.env.GMAIL_EMAIL, // generated ethereal user
+            pass: process.env.GMAIL_PASSWORD, // generated ethereal password
 
         },
     });
     let info = await transporter.sendMail({
-        from: 'admin@cyber-scape.com', // sender address
+        from: 'admin@cyberscape.foxhub.space', // sender address
         to: email, // list of receivers
         subject: `Hi ${name}, Welcome to CyberScape!`, // Subject line
         text: "You are new member", // plain text body
