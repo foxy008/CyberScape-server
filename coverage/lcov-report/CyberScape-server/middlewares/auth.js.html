@@ -97,10 +97,10 @@
 &nbsp;
 module.exports = function auth(req, res, next) {
     try {
-        const { accesstoken } = req.headers;
-        // console.log(accesstoken);
+        const { access_token } = req.headers;
+        // console.log(access_token);
         
-        req.loggedInUser = verifyToken(accesstoken);
+        req.loggedInUser = verifyToken(access_token);
 &nbsp;
         next();
     } catch (error) {

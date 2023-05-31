@@ -34,7 +34,7 @@ describe("POST /favorites",() => {
         const UserId = 1
         const res = await request(app)
         .post(`/favorites/${NFTId}`)
-        .set({accesstoken:token})
+        .set({access_token:token})
 
         expect(res.status).toBe(201)
     })
@@ -44,7 +44,7 @@ describe("POST /favorites",() => {
         const UserId = 1
         const res = await request(app)
         .post(`/favorites/${NFTId}`)
-        .set({accesstoken:token})
+        .set({access_token:token})
 
         console.log(res);
         expect(res.status).toBe(400)
@@ -65,7 +65,7 @@ describe("POST /favorites",() => {
         const NFTId = 1
         const res = await request(app)
         .get(`/favorites/${NFTId}`)
-        .set({accesstoken:"123"})
+        .set({access_token:"123"})
 
 
         expect(res.status).toBe(403)
@@ -80,7 +80,7 @@ describe("DELETE /favorites",() => {
         const UserId = 1
         const res = await request(app)
         .delete(`/favorites/${NFTId}`)
-        .set({accesstoken:token})
+        .set({access_token:token})
 
         expect(res.status).toBe(200)
     })
@@ -90,7 +90,7 @@ describe("DELETE /favorites",() => {
         const UserId = 1
         const res = await request(app)
         .delete(`/favorites/${NFTId}`)
-        .set({accesstoken:token})
+        .set({access_token:token})
 
         expect(res.status).toBe(404)
         expect(res.body.message).toBe("Favorite ID not found")
@@ -110,7 +110,7 @@ describe("DELETE /favorites",() => {
         const NFTId = 1
         const res = await request(app)
         .get(`/favorites/${NFTId}`)
-        .set({accesstoken:"123"})
+        .set({access_token:"123"})
 
 
         expect(res.status).toBe(403)

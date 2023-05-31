@@ -16,7 +16,7 @@ describe("POST /ratings",() => {
         const NFTId = 1
         const res = await request(app)
         .post(`/ratings/${NFTId}?value=10`)
-        .set({accesstoken:token})
+        .set({access_token:token})
         expect(res.status).toBe(201)
     })
 
@@ -25,7 +25,7 @@ describe("POST /ratings",() => {
         const res = await request(app)
         .post(`/ratings/${NFTId}?value=10`)
 
-        .set({accesstoken:token})
+        .set({access_token:token})
         expect(res.status).toBe(400)
     })
 
@@ -33,7 +33,7 @@ describe("POST /ratings",() => {
         const NFTId = 1000
         const res = await request(app)
         .post(`/ratings/${NFTId}`)
-        .set({accesstoken:token})
+        .set({access_token:token})
 
         expect(res.status).toBe(404)
         expect(res.body.message).toBe("Rating value not found")
@@ -53,7 +53,7 @@ describe("POST /ratings",() => {
             const NFTId = 1
             const res = await request(app)
             .get(`/ratings/${NFTId}`)
-            .set({accesstoken:"123"})
+            .set({access_token:"123"})
     
     
             expect(res.status).toBe(403)
@@ -67,7 +67,7 @@ describe("PATCH /ratings",() => {
         const NFTId = 1
         const res = await request(app)
         .patch(`/ratings/${NFTId}`)
-        .set({accesstoken:token})
+        .set({access_token:token})
         expect(res.status).toBe(201)
     })
 
@@ -85,7 +85,7 @@ describe("PATCH /ratings",() => {
             const NFTId = 1
             const res = await request(app)
             .get(`/ratings/${NFTId}`)
-            .set({accesstoken:"123"})
+            .set({access_token:"123"})
     
     
             expect(res.status).toBe(403)

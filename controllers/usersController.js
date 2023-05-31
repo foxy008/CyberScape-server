@@ -64,10 +64,10 @@ class usersController {
                 id: findUser.id
             }
 
-            const accesstoken = signToken(payload);
+            const access_token = signToken(payload);
 
             res.status(200).json({
-                accesstoken
+                access_token
             });
         } catch (error) {
             next(error);
