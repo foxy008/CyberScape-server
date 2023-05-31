@@ -671,10 +671,10 @@ class usersController {
                 id: findUser.id
             }
 &nbsp;
-            const accessToken = signToken(payload);
+            const accesstoken = signToken(payload);
 &nbsp;
             res.status(200).json({
-                accessToken
+                accesstoken
             });
         } catch (error) {
             next(error);

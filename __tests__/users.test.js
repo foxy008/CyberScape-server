@@ -283,7 +283,7 @@ describe("User Routes Users Test", () => {
         it('should get profile and response 200', async () => {
             const response = await request(app)
             .get("/users")
-            .set({accessToken: createdToken})
+            .set({accesstoken: createdToken})
 
             expect(response.status).toBe(200)
         })
@@ -302,7 +302,7 @@ describe("User Routes Users Test", () => {
         it("should failed get profile because token is not valid and response 401", async function () {
             const res = await request(app)
             .get('/users')
-            .set({accessToken:"123"})
+            .set({accesstoken:"123"})
 
 
             expect(res.status).toBe(403)
@@ -340,7 +340,7 @@ describe("User Routes Users Test", () => {
             const status_code = 200
             const res = await request(app)
             .patch(`/users/add?order_id=${order_id}&status_code=${+status_code}`)
-            .set({accessToken: createdToken })
+            .set({accesstoken: createdToken })
             // console.log(res.body.message , "ini add ");
 
             expect(res.status).toBe(200)
@@ -352,7 +352,7 @@ describe("User Routes Users Test", () => {
             const status_code = 201
             const res = await request(app)
             .patch(`/users/add?order_id=${order_id}&status_code=${+status_code}`)
-            .set({accessToken: createdToken })
+            .set({accesstoken: createdToken })
             // console.log(res.body.message , "ini add ");
 
             expect(res.status).toBe(400)
@@ -364,7 +364,7 @@ describe("User Routes Users Test", () => {
         it("should success patch reduce quota and response 200", async function () {
             const res = await request(app)
             .patch('/users/reduce')
-            .set({accessToken: createdToken })
+            .set({accesstoken: createdToken })
 
             expect(res.status).toBe(200)
         })
@@ -372,7 +372,7 @@ describe("User Routes Users Test", () => {
         it("should failed patch reduce quota and response 400", async function () {
             const res = await request(app)
             .patch('/users/reduce')
-            .set({accessToken: nullQuota })
+            .set({accesstoken: nullQuota })
             // console.log(res,"<<<ini error buat reducr quota")
             expect(res.status).toBe(400)
         })
@@ -382,7 +382,7 @@ describe("User Routes Users Test", () => {
         it('should get payment and response 200', async () => {
             const response = await request(app)
             .get("/users/payment")
-            .set({accessToken: createdToken})
+            .set({accesstoken: createdToken})
 
             expect(response.status).toBe(201)
         })
@@ -399,7 +399,7 @@ describe("User Routes Users Test", () => {
         it("should failed get payment because token is not valid and response 401", async function () {
             const res = await request(app)
             .get('/users/payment')
-            .set({accessToken:"123"})
+            .set({accesstoken:"123"})
 
 
             expect(res.status).toBe(403)
